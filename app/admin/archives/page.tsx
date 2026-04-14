@@ -1,6 +1,7 @@
 import { getArchives, deleteArchive } from "@/lib/actions/archives";
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2, FileText, ExternalLink, Shield } from "lucide-react";
+import { Plus, Trash2, FileText, ExternalLink, Shield, Sparkles, MoveRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 
@@ -16,65 +17,84 @@ export default async function AdminArchivesPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Archives</h1>
-          <p className="text-slate-500 text-sm font-medium">Manage constitutional and legislative assets.</p>
+    <div className="space-y-12 pb-24">
+      {/* Header section with premium feel */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 bg-white p-10 md:p-14 rounded-[3.5rem] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)] relative overflow-hidden">
+        <div className="relative z-10">
+          <div className="flex items-center space-x-3 text-primary mb-6">
+            <Shield className="w-5 h-5" />
+            <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400">Legislative Archives</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-slate-950 tracking-tighter leading-[0.9] mb-4 uppercase">
+            Amanat <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic font-black">Konstitusi</span>
+          </h1>
+          <p className="text-slate-500 text-lg font-bold leading-relaxed max-w-md italic">
+            Kelola arsip ketetapan, dokumen resmi, dan database strategis Fraksi Elektro.
+          </p>
         </div>
-        <Link href="/admin/archives/new">
-          <Button className="rounded-2xl h-12 px-6 bg-slate-900 hover:bg-slate-800 font-bold shadow-lg">
-            <Plus className="w-5 h-5 mr-2" />
-            New Archive
-          </Button>
+        
+        <Link href="/admin/archives/new" className="relative z-10">
+          <button className="h-20 px-10 bg-slate-950 text-white rounded-3xl font-black text-sm tracking-[0.2em] uppercase flex items-center hover:bg-primary transition-all shadow-2xl hover:-translate-y-2 active:scale-95 group">
+            <Plus className="w-6 h-6 mr-4 group-hover:rotate-90 transition-transform" />
+            New Documentation
+          </button>
         </Link>
+
+        {/* Decor */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
       </div>
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-6">
         {archives.length === 0 ? (
-          <div className="py-20 text-center bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-100">
-            <p className="text-slate-400 font-bold italic">No archives found. Start by documenting a law.</p>
+          <div className="py-32 text-center bg-white rounded-[3.5rem] border-4 border-dashed border-slate-50">
+            <div className="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <FileText className="w-10 h-10 text-slate-300" />
+            </div>
+            <p className="text-slate-400 font-black text-xl italic tracking-tight uppercase">Belum ada dokumen tersimpan</p>
+            <p className="text-slate-300 text-sm font-bold mt-2 uppercase tracking-widest">Setiap keputusan adalah sejarah.</p>
           </div>
         ) : (
           archives.map((archive) => (
-            <div 
+            <motion.div 
               key={archive._id} 
-              className="bg-white border border-slate-100 rounded-3xl p-6 flex flex-col md:flex-row items-center gap-6 group hover:shadow-xl transition-all duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white border border-slate-100 rounded-[3rem] p-8 flex flex-col md:flex-row items-center gap-10 group hover:shadow-[0_40px_80px_rgba(0,0,0,0.06)] hover:border-primary/20 transition-all duration-700"
             >
-              <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-colors">
+              <div className="w-20 h-20 rounded-[1.5rem] bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0 group-hover:bg-slate-950 group-hover:text-white group-hover:rotate-6 transition-all duration-500">
                 <FileText className="w-8 h-8" />
               </div>
               
-              <div className="flex-1 min-w-0 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start space-x-3 mb-2">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-full">
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <span className="px-5 py-2 bg-slate-950 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl">
                     {archive.documentType}
                   </span>
-                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-widest rounded-full">
+                  <div className="px-4 py-2 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl">
                     {archive.category}
-                  </span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-black text-slate-900 truncate mb-1">{archive.title}</h3>
-                <p className="text-slate-600 text-sm line-clamp-1 italic font-bold">{archive.description}</p>
+                <h3 className="text-3xl font-black text-slate-950 truncate mb-3 tracking-tighter uppercase">{archive.title}</h3>
+                <p className="text-slate-500 text-base line-clamp-2 italic font-bold leading-relaxed">{archive.description}</p>
               </div>
 
-              <div className="flex items-center space-x-2 shrink-0">
+              <div className="flex items-center space-x-4 shrink-0">
                 <Link href={archive.linkUrl} target="_blank">
-                  <Button variant="ghost" size="icon" className="w-12 h-12 rounded-2xl text-slate-400 hover:text-primary hover:bg-primary/5 transition-all">
-                    <ExternalLink className="w-5 h-5" />
-                  </Button>
+                  <button className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 text-slate-400 hover:text-white hover:bg-primary hover:border-primary hover:shadow-xl transition-all duration-500 flex items-center justify-center group/link">
+                    <ExternalLink className="w-6 h-6 group-hover/link:scale-110 transition-transform" />
+                  </button>
                 </Link>
                 <form action={handleDelete.bind(null, archive._id!)}>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="w-12 h-12 rounded-2xl text-red-400 hover:text-red-600 hover:bg-red-50 transition-all"
+                  <button 
+                    type="submit"
+                    className="w-16 h-16 rounded-2xl bg-white border border-slate-100 text-red-400 hover:text-white hover:bg-red-500 hover:border-red-500 hover:shadow-xl transition-all duration-500 flex items-center justify-center group/del"
                   >
-                    <Trash2 className="w-5 h-5" />
-                  </Button>
+                    <Trash2 className="w-6 h-6 group-hover/del:scale-110 transition-transform" />
+                  </button>
                 </form>
               </div>
-            </div>
+            </motion.div>
           ))
         )}
       </div>

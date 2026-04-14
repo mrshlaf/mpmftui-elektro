@@ -14,10 +14,15 @@ export interface ArchiveData {
 }
 
 export async function getArchives(): Promise<ArchiveData[]> {
-  const conn = await connectToDatabase();
-  if (!conn) return [];
-  const archives = await Archive.find({}).sort({ createdAt: -1 }).lean();
-  return JSON.parse(JSON.stringify(archives));
+  try {
+    const conn = await connectToDatabase();
+    if (!conn) return [];
+    const archives = await Archive.find({}).sort({ createdAt: -1 }).limit(10).lean();
+    return JSON.parse(JSON.stringify(archives));
+  } catch (error) {
+    console.error("Failed to fetch archives:", error);
+    return [];
+  }
 }
 
 export async function createArchive(data: Omit<ArchiveData, "_id">) {

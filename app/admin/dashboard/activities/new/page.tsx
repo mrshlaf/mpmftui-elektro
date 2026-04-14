@@ -40,81 +40,115 @@ export default function NewActivityPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8 bg-white p-4 rounded-3xl">
+    <div className="max-w-4xl mx-auto space-y-10 selection:bg-primary/10">
       <Link 
         href="/admin/dashboard/activities" 
-        className="flex items-center space-x-2 text-slate-700 hover:text-slate-950 transition-colors group"
+        className="flex items-center space-x-3 text-slate-400 hover:text-slate-950 transition-all group w-fit"
       >
-        <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        <span className="text-xs font-black uppercase tracking-widest">Back to Management</span>
+        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:-translate-x-1 transition-transform">
+          <ChevronLeft className="w-4 h-4" />
+        </div>
+        <span className="text-[10px] font-black uppercase tracking-[0.3em]">Back to Management</span>
       </Link>
 
-      <div className="bg-white border border-slate-200 rounded-[3rem] p-10 md:p-14 shadow-[0_20px_60px_rgba(0,0,0,0.04)] relative overflow-hidden">
+      <div className="bg-white border border-slate-100 rounded-[3.5rem] p-10 md:p-14 shadow-[0_40px_100px_rgba(0,0,0,0.04)] relative overflow-hidden">
         <div className="relative z-10">
-          <div className="flex items-center space-x-3 text-primary mb-6">
-            <Sparkles className="w-5 h-5" />
-            <span className="font-black tracking-[0.2em] text-[10px] uppercase text-slate-600">Intellectual Asset Creation</span>
+          <div className="flex items-center space-x-3 text-primary mb-10">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
+            <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400">Creation Mode</span>
           </div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tighter mb-10">Deploy New Activity</h1>
+          
+          <h1 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tighter mb-12 uppercase leading-none">
+            Publish <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">New Legacy</span>
+          </h1>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest ml-1">Asset Title</label>
-                <Input name="title" required placeholder="Nama Kegiatan..." className="h-14 rounded-2xl bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:ring-primary/20 focus:border-primary px-6" />
+          <form onSubmit={handleSubmit} className="space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-4">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">Moment Title</label>
+                <div className="relative group">
+                  <Input 
+                    name="title" 
+                    required 
+                    placeholder="E.g. Sidang Paripurna I" 
+                    className="h-16 rounded-[1.5rem] bg-slate-50 border-slate-100 text-slate-950 placeholder:text-slate-300 focus:ring-primary/10 focus:border-primary font-bold px-8 transition-all" 
+                  />
+                </div>
               </div>
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest ml-1">Event Date</label>
-                <Input name="date" type="date" required className="h-14 rounded-2xl bg-slate-50 border-slate-200 text-slate-900 focus:ring-primary/20 focus:border-primary px-6" />
+              <div className="space-y-4">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">Execution Date</label>
+                <Input 
+                  name="date" 
+                  type="date" 
+                  required 
+                  className="h-16 rounded-[1.5rem] bg-slate-50 border-slate-100 text-slate-950 focus:ring-primary/10 focus:border-primary font-bold px-8" 
+                />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest ml-1">Category</label>
-                <select 
-                  name="category" 
-                  className="w-full h-14 rounded-2xl bg-slate-50 border-slate-200 text-slate-900 focus:ring-primary/20 focus:border-primary px-6 font-semibold text-sm outline-none appearance-none"
-                  required
-                >
-                  <option value="Sidang">Sidang</option>
-                  <option value="Kunjungan">Kunjungan</option>
-                  <option value="Forum">Forum</option>
-                  <option value="Internal">Internal</option>
-                </select>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="space-y-4">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">Classification</label>
+                <div className="relative">
+                  <select 
+                    name="category" 
+                    className="w-full h-16 rounded-[1.5rem] bg-slate-50 border-slate-100 text-slate-950 focus:ring-primary/10 focus:border-primary px-8 font-bold text-sm outline-none appearance-none cursor-pointer"
+                    required
+                  >
+                    <option value="Sidang">🏛️ Sidang</option>
+                    <option value="Kunjungan">🤝 Kunjungan</option>
+                    <option value="Forum">🎤 Forum</option>
+                    <option value="Internal">🏠 Internal</option>
+                  </select>
+                  <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-300">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                </div>
               </div>
-              <div className="space-y-3">
-                <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest ml-1">Visual URL (External)</label>
-                <Input name="imageUrl" placeholder="https://..." className="h-14 rounded-2xl bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:ring-primary/20 focus:border-primary px-6" />
+              <div className="space-y-4">
+                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">Cover Image Link</label>
+                <div className="relative group">
+                  <Input 
+                    name="imageUrl" 
+                    placeholder="Imgur / Unsplash URL..." 
+                    className="h-16 rounded-[1.5rem] bg-slate-50 border-slate-100 text-slate-950 placeholder:text-slate-300 focus:ring-primary/10 focus:border-primary font-bold px-8 transition-all" 
+                  />
+                  <ImageIcon className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
+                </div>
               </div>
             </div>
 
-            <div className="space-y-3">
-              <label className="text-[10px] font-black text-slate-700 uppercase tracking-widest ml-1">Asset Description</label>
+            <div className="space-y-4">
+              <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] ml-1">Detailed Log</label>
               <Textarea 
                 name="description" 
                 required 
-                placeholder="Deskripsi kegiatan secara mendalam..." 
-                className="min-h-[160px] rounded-3xl bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:ring-primary/20 focus:border-primary p-6 resize-none" 
+                placeholder="Narrate the importance of this moment for the fraction..." 
+                className="min-h-[180px] rounded-[2rem] bg-slate-50 border-slate-100 text-slate-950 placeholder:text-slate-300 focus:ring-primary/10 focus:border-primary p-8 resize-none font-bold leading-relaxed transition-all" 
               />
             </div>
 
-            <div className="pt-6 border-t border-slate-100 flex justify-end">
+            <div className="pt-10 flex justify-end">
               <Button 
                 type="submit" 
                 disabled={isLoading}
-                className="h-16 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-lg shadow-xl hover:shadow-2xl transition-all group active:scale-95"
+                className="h-20 px-14 bg-slate-950 text-white hover:bg-primary rounded-3xl font-black text-xs tracking-[0.2em] shadow-2xl hover:-translate-y-2 transition-all group active:scale-95"
               >
-                {isLoading ? "DEPLOYING..." : (
-                  <span className="flex items-center">
-                    PUBLISH ACTIVITY
-                    <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {isLoading ? "SYNCING..." : (
+                  <span className="flex items-center uppercase">
+                    Publish to Feed
+                    <Send className="ml-4 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </span>
                 )}
               </Button>
             </div>
           </form>
         </div>
+
+        {/* Decorative Orbs */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-50 rounded-full blur-[100px] pointer-events-none" />
       </div>
     </div>
   );

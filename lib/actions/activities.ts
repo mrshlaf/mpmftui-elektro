@@ -15,10 +15,15 @@ export interface ActivityData {
 }
 
 export async function getActivities(): Promise<ActivityData[]> {
-  const conn = await connectToDatabase();
-  if (!conn) return [];
-  const activities = await Activity.find({}).sort({ date: -1 }).lean();
-  return JSON.parse(JSON.stringify(activities));
+  try {
+    const conn = await connectToDatabase();
+    if (!conn) return [];
+    const activities = await Activity.find({}).sort({ date: -1 }).limit(10).lean();
+    return JSON.parse(JSON.stringify(activities));
+  } catch (error) {
+    console.error("Failed to fetch activities:", error);
+    return [];
+  }
 }
 
 export async function createActivity(data: Omit<ActivityData, "_id">) {

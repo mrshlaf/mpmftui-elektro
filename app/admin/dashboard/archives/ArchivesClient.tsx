@@ -83,7 +83,7 @@ export default function ArchivesClient({ initial }: Props) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Legislative Archives</h1>
+          <h1 className="text-2xl font-bold text-foreground">Legislative Archives</h1>
           <p className="text-muted-foreground text-sm mt-0.5">Manage UU, TAP, Siaran Pers, and other documents</p>
         </div>
         <Button onClick={openCreate} className="bg-secondary text-secondary-foreground hover:bg-secondary/90 gap-2">
@@ -112,7 +112,7 @@ export default function ArchivesClient({ initial }: Props) {
             )}
             {archives.map((a) => (
               <TableRow key={a._id}>
-                <TableCell className="font-medium text-white max-w-xs truncate">{a.title}</TableCell>
+                <TableCell className="font-medium text-foreground max-w-xs truncate">{a.title}</TableCell>
                 <TableCell>
                   <span className="px-2 py-0.5 rounded-full text-xs bg-secondary/10 text-secondary border border-secondary/20">
                     {a.documentType}
