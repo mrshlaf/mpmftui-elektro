@@ -2,6 +2,8 @@ import { getActivities } from "@/lib/actions/activities";
 import HeroSection from "@/components/sections/HeroSection";
 import ActivityGallery from "@/components/sections/ActivityGallery";
 import TriasSection from "@/components/sections/TriasSection";
+import VisionMission from "@/components/sections/VisionMission";
+import TeamSection from "@/components/sections/TeamSection";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -13,10 +15,12 @@ export default async function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="min-h-screen">
         <HeroSection />
-        <ActivityGallery activities={activities} />
+        <VisionMission />
         <TriasSection />
+        <TeamSection />
+        <ActivityGallery activities={activities} />
       </main>
       <Footer />
     </>

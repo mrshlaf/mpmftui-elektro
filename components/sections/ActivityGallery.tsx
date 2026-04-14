@@ -1,116 +1,130 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Calendar, ArrowUpRight, Activity } from "lucide-react";
 import Image from "next/image";
-import type { ActivityData } from "@/lib/actions/activities";
-import { CalendarDays, Tag } from "lucide-react";
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
+interface ActivityData {
+  _id?: string;
+  title: string;
+  description: string;
+  localImagePath: string;
+  externaImageUrl?: string;
+  date: string;
+  category: string;
+}
 
 export default function ActivityGallery({ activities }: { activities: ActivityData[] }) {
-  return (
-    <section id="activities" className="py-24 px-6 max-w-7xl mx-auto">
-      {/* Section heading */}
-      <div className="text-center mb-16">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-primary text-sm font-semibold uppercase tracking-widest mb-3"
-        >
-          Rekam Jejak
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-4xl sm:text-5xl font-black text-white tracking-tight"
-        >
-          Our Activities
-        </motion.h2>
-      </div>
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
-      {activities.length === 0 ? (
-        <div className="text-center text-muted-foreground py-24 border border-dashed border-border rounded-2xl">
-          Belum ada aktivitas yang dipublikasikan.
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" as const } },
+  };
+
+  return (
+    <section className="py-24 bg-white relative overflow-hidden" id="kegiatan">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center space-x-2 text-primary mb-6"
+            >
+              <Activity className="w-5 h-5" />
+              <span className="font-black tracking-[0.3em] text-xs uppercase text-slate-600">Activity Archive</span>
+            </motion.div>
+            <motion.h2
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight"
+            >
+              Jejak <span className="text-primary italic">Progresivitas</span>
+            </motion.h2>
+          </div>
+          <p className="text-slate-600 text-lg md:text-xl max-w-sm leading-relaxed font-medium">
+            Dokumentasi langkah nyata Fraksi Elektro dalam mengawal aspirasi IKM Elektro.
+          </p>
         </div>
-      ) : (
+
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {activities.map((activity, i) => {
-            const isLarge = i === 0 || i === 3;
-            return (
+          {activities.length === 0 ? (
+            <div className="col-span-full py-24 text-center bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-100">
+              <p className="text-slate-500 font-black italic">Belum ada kegiatan yang dipublikasikan.</p>
+            </div>
+          ) : (
+            activities.map((activity, idx) => (
               <motion.div
-                key={activity._id}
-                variants={cardVariants}
-                whileHover={{ scale: 1.02, y: -4 }}
-                className={`group relative rounded-2xl overflow-hidden border border-border bg-card flex flex-col cursor-pointer transition-shadow hover:shadow-[0_8px_40px_rgba(0,245,255,0.08)] ${isLarge ? "sm:col-span-2 lg:col-span-1" : ""}`}
+                key={activity._id || idx}
+                variants={item}
+                className="group relative h-[500px] overflow-hidden rounded-[3rem] bg-slate-50 border border-slate-100"
               >
-                {/* Image */}
-                <div className="relative aspect-[16/9] bg-muted overflow-hidden">
-                  {(activity.externaImageUrl || activity.localImagePath) ? (
-                    <Image
-                      src={activity.externaImageUrl || activity.localImagePath}
-                      alt={activity.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      unoptimized={!!activity.externaImageUrl}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                      <span className="text-muted-foreground text-sm">No image</span>
-                    </div>
-                  )}
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm">
-                      <Tag className="w-3 h-3" />
-                      {activity.category}
-                    </span>
-                  </div>
+                {/* Image Treatment */}
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={activity.externaImageUrl || activity.localImagePath || "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80"}
+                    alt={activity.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-all duration-700 ease-out grayscale-[20%] group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
                 </div>
 
-                {/* Content */}
-                <div className="p-4 flex-1 flex flex-col gap-2">
-                  <h3 className="font-bold text-white text-base leading-snug group-hover:text-primary transition-colors">
+                {/* Content Overlay */}
+                <div className="absolute inset-0 z-10 p-10 flex flex-col justify-end">
+                  <div className="flex items-center space-x-3 mb-5">
+                    <span className="px-4 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest">
+                      {activity.category}
+                    </span>
+                    <div className="flex items-center text-slate-600 text-xs font-bold">
+                      <Calendar className="w-3.5 h-3.5 mr-2 text-primary" />
+                      {new Date(activity.date).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                      })}
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
                     {activity.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2 flex-1">
+                  
+                  <p className="text-slate-600 text-sm font-medium line-clamp-2 mb-8 group-hover:text-slate-900 transition-colors">
                     {activity.description}
                   </p>
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1">
-                    <CalendarDays className="w-3.5 h-3.5" />
-                    {new Date(activity.date).toLocaleDateString("id-ID", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
+
+                  <div className="pt-8 border-t border-slate-200/50 flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300">
+                      View Details
+                    </span>
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all duration-500">
+                      <ArrowUpRight className="w-6 h-6" />
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
+            ))
+          )}
         </motion.div>
-      )}
+      </div>
     </section>
   );
 }

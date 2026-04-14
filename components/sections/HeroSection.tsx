@@ -1,126 +1,84 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Zap, Sparkles, MoveDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, Zap } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A1128] via-[#0d1a3a] to-[#0A1128]" />
-      
-      {/* Glowing orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%)" }}
-        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(255,221,0,0.05) 0%, transparent 70%)" }}
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Grid lines overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,245,255,1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,245,255,1) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium mb-6"
-        >
-          <Zap className="w-3.5 h-3.5" />
-          MPM FTUI · Fraksi Elektro 2026
-        </motion.div>
-
-        {/* Main headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-none mb-4"
-        >
-          SINTESA
-          <br />
-          <span
-            className="text-transparent"
-            style={{
-              WebkitTextStroke: "2px #00F5FF",
-              textShadow: "0 0 40px rgba(0,245,255,0.4)",
-            }}
-          >
-            KARSA
-          </span>
-          <span className="text-white"> 2026</span>
-        </motion.h1>
-
-        {/* Sub-headline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          Garda Aspiratif, Progresif, dan Transparan.{" "}
-          <span className="text-white/80">
-            Mewujudkan legislasi yang bermartabat untuk civitas Teknik Elektro UI.
-          </span>
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Link
-            href="#activities"
-            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:bg-primary/90 transition-all hover:shadow-[0_0_30px_rgba(0,245,255,0.3)]"
-          >
-            Jelajahi Aspirasi
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            href="#trias"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-border text-foreground font-semibold text-base hover:border-primary/50 hover:bg-primary/5 transition-all"
-          >
-            Layanan Kami
-          </Link>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border border-primary/30 flex items-start justify-center pt-1.5"
-          >
-            <div className="w-1 h-2 rounded-full bg-primary/60" />
-          </motion.div>
-        </motion.div>
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-white">
+      {/* Refined Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Badge */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-slate-50 border border-slate-100 mb-10 shadow-sm"
+          >
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-[11px] font-black tracking-[0.2em] uppercase text-slate-500">SINTESA KARSA 2026</span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-6xl md:text-9xl font-black mb-10 tracking-tight text-slate-900 leading-[0.9]"
+          >
+            Elevating <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-primary animate-gradient text-glow-light">Collective</span> <br />
+            Aspiration
+          </motion.h1>
+
+          {/* Subtext */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-2xl text-slate-500 mb-14 max-w-3xl mx-auto leading-relaxed font-medium"
+          >
+            Membangun ekosistem legislatif yang transparan, responsif, dan profesional untuk menyuarakan aspirasi IKM Departemen Teknik Elektro UI.
+          </motion.p>
+
+          {/* Actions */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-5"
+          >
+            <Link href="http://bit.ly/OprecStaffMPM2026" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto px-10 h-16 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl group transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                Join our Staff
+                <Zap className="ml-2 w-5 h-5 group-hover:fill-yellow-400 transition-colors" />
+              </Button>
+            </Link>
+            <Link href="https://wa.me/6285213695654" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto px-10 h-16 border-slate-200 rounded-2xl text-slate-900 hover:bg-slate-50 font-bold text-lg">
+                Saluran Aspirasi
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Decorative Scroll Hint */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-300 pointer-events-none lg:block hidden"
+      >
+        <MoveDown className="w-6 h-6" />
+      </motion.div>
     </section>
   );
 }
