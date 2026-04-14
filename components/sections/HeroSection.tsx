@@ -11,7 +11,7 @@ export default function HeroSection() {
       {/* Light Premium Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] mix-blend-multiply dark:mix-blend-soft-light dark:opacity-20" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-100 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-soft-light dark:opacity-10" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-100 dark:bg-blue-600/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-soft-light dark:opacity-10" />
         
         {/* Subtle Tech Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30" />

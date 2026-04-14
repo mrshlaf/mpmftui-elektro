@@ -77,7 +77,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="p-10 rounded-[3rem] bg-white border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
+              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">
@@ -90,12 +90,12 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
                   Penyebaran Program Kerja telah memenuhi seluruh nilai GBPK. Fokus utama saat ini adalah pengoptimalan dasar nilai GBPKD yang mendominasi sebesar 34,2%. Catatan perbaikan dititikberatkan pada penguatan nilai Ke-IKM-an dan hubungan interpersonal.
                 </p>
               </div>
-              <div className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 relative z-10 bg-blue-50 dark:bg-blue-900/20 self-start px-4 py-2 rounded-full border border-blue-100 dark:border-blue-900/30">
+              <div className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 relative z-10 bg-blue-50 dark:bg-blue-900/40 self-start px-4 py-2 rounded-full border border-blue-100 dark:border-blue-800/50">
                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 <span>Status: GBPK Terpenuhi</span>
               </div>
               {/* Minimal Background Decor for Card */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-50 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-50 dark:bg-blue-400/10 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
             {/* Finance Analysis Card */}
@@ -103,7 +103,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="p-10 rounded-[3rem] bg-white border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
+              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">
@@ -116,12 +116,12 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
                   Kondisi kas lembaga dinyatakan stabil dengan pemasukan tertinggi pada bulan September. Meskipun terdapat fluktuasi pada bulan Januari-Juli, manajemen kas tetap aman. Saran mitigasi diarahkan pada perencanaan Dana Usaha dan verifikasi pengajuan Sponsorship.
                 </p>
               </div>
-              <div className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 relative z-10 bg-emerald-50 dark:bg-emerald-900/20 self-start px-4 py-2 rounded-full border border-emerald-100 dark:border-emerald-900/30">
+              <div className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 relative z-10 bg-emerald-50 dark:bg-emerald-900/40 self-start px-4 py-2 rounded-full border border-emerald-100 dark:border-emerald-800/50">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Status Finansial Aman</span>
               </div>
               {/* Minimal Background Decor for Card */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-50 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-50 dark:bg-emerald-400/10 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </div>
         )}
@@ -129,7 +129,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
 
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-blue-50 dark:bg-blue-900/20 rounded-full blur-[120px] pointer-events-none" />
     </section>
   );
 }
