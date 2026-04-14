@@ -5,8 +5,10 @@ import TriasSection from "@/components/sections/TriasSection";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
-  const activities = await getActivities();
+  const activities = (await getActivities()) || [];
 
   return (
     <>

@@ -3,6 +3,8 @@ import { getArchives } from "@/lib/actions/archives";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ImageIcon, FileText, Activity } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const [activities, archives] = await Promise.all([
     getActivities(),

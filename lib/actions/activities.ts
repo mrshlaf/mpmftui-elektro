@@ -15,7 +15,8 @@ export interface ActivityData {
 }
 
 export async function getActivities(): Promise<ActivityData[]> {
-  await connectToDatabase();
+  const conn = await connectToDatabase();
+  if (!conn) return [];
   const activities = await Activity.find({}).sort({ date: -1 }).lean();
   return JSON.parse(JSON.stringify(activities));
 }

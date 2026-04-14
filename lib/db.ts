@@ -14,7 +14,8 @@ async function connectToDatabase() {
   }
 
   if (!MONGODB_URI) {
-    throw new Error("Please define the MONGODB_URI environment variable");
+    console.warn("MONGODB_URI is not defined. Skipping database connection.");
+    return null;
   }
 
   if (!cached.promise) {

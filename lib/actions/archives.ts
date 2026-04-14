@@ -14,7 +14,8 @@ export interface ArchiveData {
 }
 
 export async function getArchives(): Promise<ArchiveData[]> {
-  await connectToDatabase();
+  const conn = await connectToDatabase();
+  if (!conn) return [];
   const archives = await Archive.find({}).sort({ createdAt: -1 }).lean();
   return JSON.parse(JSON.stringify(archives));
 }
