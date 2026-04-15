@@ -46,8 +46,8 @@ const categories = ["All", "Koordinasi", "Rapat", "Produk Fraksi", "Produk Legis
 export default function GovernanceSection() {
   const [filter, setFilter] = useState("All");
 
-  const filteredItems = filter === "All" 
-    ? directives 
+  const filteredItems = filter === "All"
+    ? directives
     : directives.filter(d => d.type === filter);
 
   const getIcon = (type: string) => {
@@ -61,22 +61,22 @@ export default function GovernanceSection() {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden" id="ejawantah">
+    <section className="py-32 bg-white relative overflow-hidden" id="ejawantah">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center space-x-3 px-3 py-1 rounded-full bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 mb-6"
+            className="inline-flex items-center space-x-3 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 mb-6"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-slate-400 dark:text-slate-500">Directives & Mandates</span>
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-slate-400">Directives & Mandates</span>
           </motion.div>
           <motion.h2
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            className="text-4xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] mb-8"
+            className="text-4xl md:text-8xl font-black text-slate-950 tracking-tighter leading-[0.8] mb-8"
           >
             Ejawantah <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">Fraksi Elektro</span>
@@ -84,7 +84,7 @@ export default function GovernanceSection() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-bold leading-relaxed max-w-2xl mx-auto"
+            className="text-slate-500 text-lg md:text-xl font-bold leading-relaxed max-w-2xl mx-auto"
           >
             Amanah dan tugas fungsional yang dijalankan secara profesional untuk mengawal kepentingan Warga Departemen Teknik Elektro UI.
           </motion.p>
@@ -96,11 +96,10 @@ export default function GovernanceSection() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all duration-500 border ${
-                filter === cat 
-                ? "bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 border-slate-950 dark:border-white shadow-2xl shadow-slate-200 dark:shadow-none scale-105" 
-                : "bg-white dark:bg-slate-900 text-slate-400 dark:text-slate-500 hover:text-slate-950 dark:hover:text-white border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
-              }`}
+              className={`px-6 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all duration-500 border ${filter === cat
+                ? "bg-slate-950 text-white border-slate-950 shadow-2xl shadow-slate-200 scale-105"
+                : "bg-white text-slate-400 hover:text-slate-950 border-slate-100 hover:bg-slate-50"
+                }`}
             >
               {cat}
             </button>
@@ -118,34 +117,33 @@ export default function GovernanceSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className="group p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 shadow-sm dark:shadow-none transition-all duration-500 flex flex-col justify-between"
+                className="group p-10 rounded-[2.5rem] bg-white border border-slate-100 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 shadow-sm transition-all duration-500 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-10">
-                    <div className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">Directive #{item.id}</div>
-                    <div className={`p-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-all duration-500 group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 ${
-                      filter !== "All" ? "text-primary" : "text-slate-400"
-                    }`}>
+                    <div className="text-[9px] font-black text-slate-300 uppercase tracking-widest">Directive #{item.id}</div>
+                    <div className={`p-3 rounded-2xl bg-slate-50 border border-slate-100 transition-all duration-500 group-hover:bg-slate-950 group-hover:text-white ${filter !== "All" ? "text-primary" : "text-slate-400"
+                      }`}>
                       {getIcon(item.type)}
                     </div>
                   </div>
-                  <p className="text-slate-950 dark:text-white text-xl font-black leading-tight mb-10 group-hover:text-primary transition-colors">
+                  <p className="text-slate-950 text-xl font-black leading-tight mb-10 group-hover:text-primary transition-colors">
                     {item.text}
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-slate-950 dark:group-hover:text-white transition-colors">{item.type}</span>
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-slate-950 transition-colors">{item.type}</span>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
       </div>
-      
+
       {/* Background Decor */}
       <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-50 dark:bg-blue-900/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[150px] pointer-events-none" />
     </section>
   );
 }

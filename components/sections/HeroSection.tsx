@@ -37,8 +37,8 @@ export default function HeroSection() {
             transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
             className="text-7xl md:text-[12rem] font-black mb-10 tracking-tighter text-foreground leading-[0.8] drop-shadow-sm"
           >
-            SINTESA <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 italic drop-shadow-[0_20px_60px_rgba(0,209,255,0.25)]">KARSA</span>
+            PAGI <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 italic drop-shadow-[0_20px_60px_rgba(0,209,255,0.25)]">ELEKTRO!</span>
           </motion.h1>
 
           {/* Subtext */}

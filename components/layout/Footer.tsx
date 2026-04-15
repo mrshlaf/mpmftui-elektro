@@ -23,8 +23,8 @@ export default function Footer() {
   return (
     <footer className="relative pt-32 pb-16 bg-slate-950 border-t border-slate-900 overflow-hidden text-white">
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-50/50 dark:bg-blue-900/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-950/30 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-24">
@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center space-x-4 mb-8 group">
-              <div className="w-14 h-14 bg-slate-950 rounded-[1.5rem] flex items-center justify-center transition-all duration-500 group-hover:-rotate-6 group-hover:shadow-2xl">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-[1.25rem] flex items-center justify-center transition-all duration-500 group-hover:-rotate-6 group-hover:shadow-2xl group-hover:shadow-primary/20">
                 <Zap className="w-7 h-7 text-white" />
               </div>
               <div>
@@ -53,7 +53,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   target="_blank"
-                  className="w-14 h-14 bg-slate-900 border border-slate-800 rounded-[1.25rem] flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/50 hover:bg-primary/10 hover:shadow-2xl transition-all duration-300"
+                  className="w-14 h-14 bg-white/5 backdrop-blur-sm rounded-[1.25rem] flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-1 transition-all duration-300"
                 >
                   <social.icon className="w-6 h-6" />
                 </Link>
