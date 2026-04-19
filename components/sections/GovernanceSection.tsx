@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
 import { Scale, Users, FileText, ClipboardList, PenTool } from "lucide-react";
 
 interface Directives {
@@ -68,7 +68,7 @@ export default function GovernanceSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center space-x-3 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 mb-6"
+            className="inline-flex items-center space-x-3 px-3 py-1 rounded-full bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800 mb-6"
           >
             <div className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span className="text-[10px] font-black tracking-[0.3em] uppercase text-slate-400">Directives & Mandates</span>
@@ -76,10 +76,10 @@ export default function GovernanceSection() {
           <motion.h2
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            className="text-4xl md:text-8xl font-black text-slate-950 tracking-tighter leading-[0.8] mb-8"
+            className="text-4xl md:text-8xl font-black text-slate-950 tracking-tighter leading-[0.8] mb-8 font-sans"
           >
             Ejawantah <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">Fraksi Elektro</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Fraksi Elektro</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -98,7 +98,7 @@ export default function GovernanceSection() {
               onClick={() => setFilter(cat)}
               className={`px-6 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all duration-500 border ${filter === cat
                 ? "bg-slate-950 text-white border-slate-950 shadow-2xl shadow-slate-200 scale-105"
-                : "bg-white text-slate-400 hover:text-slate-950 border-slate-100 hover:bg-slate-50"
+                : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-400 dark:text-slate-500 hover:text-slate-950 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800"
                 }`}
             >
               {cat}
@@ -110,40 +110,79 @@ export default function GovernanceSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (
-              <motion.div
-                layout
-                key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
-                className="group p-10 rounded-[2.5rem] bg-white border border-slate-100 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 shadow-sm transition-all duration-500 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-10">
-                    <div className="text-[9px] font-black text-slate-300 uppercase tracking-widest">Directive #{item.id}</div>
-                    <div className={`p-3 rounded-2xl bg-slate-50 border border-slate-100 transition-all duration-500 group-hover:bg-slate-950 group-hover:text-white ${filter !== "All" ? "text-primary" : "text-slate-400"
-                      }`}>
-                      {getIcon(item.type)}
-                    </div>
-                  </div>
-                  <p className="text-slate-950 text-xl font-black leading-tight mb-10 group-hover:text-primary transition-colors">
-                    {item.text}
-                  </p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-slate-950 transition-colors">{item.type}</span>
-                </div>
-              </motion.div>
+              <DirectiveCard key={item.id} item={item} filter={filter} getIcon={getIcon} />
             ))}
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Background Decor */}
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[150px] pointer-events-none" />
     </section>
+  );
+}
+
+function DirectiveCard({ item, filter, getIcon }: any) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 100, damping: 30 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 100, damping: 30 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      layout
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4, ease: "circOut" }}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="group p-10 rounded-[2.5rem] bg-white border border-slate-100 hover:border-primary/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.06)] shadow-sm transition-all duration-500 flex flex-col justify-between relative overflow-hidden h-full"
+    >
+      {/* Spotlight */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: useTransform(
+            [mouseX, mouseY],
+            ([x, y]: any) => `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(59, 130, 246, 0.05), transparent 80%)`
+          )
+        }}
+      />
+
+      <div className="relative z-10" style={{ transform: "translateZ(40px)" }}>
+        <div className="flex items-center justify-between mb-10">
+          <div className="text-[9px] font-black text-slate-300 uppercase tracking-[0.3em]">Directive #{item.id}</div>
+          <div className={`p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-all duration-500 group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 group-hover:rotate-6 group-hover:scale-110 shadow-sm ${filter !== "All" ? "text-primary" : "text-slate-400 dark:text-slate-500"}`}>
+            {getIcon(item.type)}
+          </div>
+        </div>
+        <p className="text-slate-950 text-xl font-black leading-tight mb-10 group-hover:text-primary transition-colors">
+          "{item.text}"
+        </p>
+      </div>
+
+      <div className="flex items-center space-x-3 relative z-10" style={{ transform: "translateZ(20px)" }}>
+        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover:text-slate-950 transition-colors">{item.type}</span>
+      </div>
+
+    </motion.div>
   );
 }

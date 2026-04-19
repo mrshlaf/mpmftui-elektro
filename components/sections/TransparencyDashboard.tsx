@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { BarChart3, PieChart, TrendingUp, AlertCircle, CheckCircle2, DollarSign, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
 
 interface TransparencyDashboardProps {
   isTeaser?: boolean;
@@ -10,9 +11,9 @@ interface TransparencyDashboardProps {
 
 export default function TransparencyDashboard({ isTeaser = false }: TransparencyDashboardProps) {
   const stats = [
-    { label: "Total Proker IME", value: "67", sub: "Analisis GBPK", icon: BarChart3, color: "text-primary group-hover:text-cyan-300", bg: "bg-slate-950 border-slate-800" },
-    { label: "Fokusan GBPKD", value: "34.2%", sub: "Implementasi Nilai", icon: PieChart, color: "text-purple-400 group-hover:text-purple-300", bg: "bg-slate-950 border-slate-800" },
-    { label: "Stabilitas Kas", value: "Aman", sub: "Evaluasi RKAT", icon: CheckCircle2, color: "text-green-400 group-hover:text-green-300", bg: "bg-slate-950 border-slate-800" },
+    { label: "Total Proker IME", value: "67", sub: "Analisis GBPK", icon: BarChart3, color: "text-primary", bg: "bg-white dark:bg-slate-950 border-slate-100 dark:border-slate-800" },
+    { label: "Fokusan GBPKD", value: "34.2%", sub: "Implementasi Nilai", icon: PieChart, color: "text-purple-500", bg: "bg-white dark:bg-slate-950 border-slate-100 dark:border-slate-800" },
+    { label: "Stabilitas Kas", value: "Aman", sub: "Evaluasi RKAT", icon: CheckCircle2, color: "text-green-600", bg: "bg-white dark:bg-slate-950 border-slate-100 dark:border-slate-800" },
   ];
 
   return (
@@ -27,11 +28,11 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               className="flex items-center space-x-3 text-primary mb-6"
             >
               <TrendingUp className="w-5 h-5" />
-              <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400">Analytical Oversight</span>
+              <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Analytical Oversight</span>
             </motion.div>
-            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground ${isTeaser ? "text-5xl md:text-9xl" : "text-5xl md:text-8xl"}`}>
+            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground font-sans ${isTeaser ? "text-5xl md:text-9xl" : "text-5xl md:text-8xl"}`}>
               Insight & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">Transparansi</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Transparansi</span>
             </h2>
             <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed ${isTeaser ? "text-xl md:text-2xl max-w-3xl" : "text-lg md:text-xl"}`}>
               Hasil audit dan analisis strategis terhadap program kerja dan stabilitas keuangan internal untuk menjamin akuntabilitas triwulanan.
@@ -51,21 +52,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
 
           <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 w-full ${isTeaser ? "max-w-4xl" : "lg:w-auto mt-8"}`}>
             {stats.map((stat, idx) => (
-                 <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-2xl hover:border-primary/20 transition-all duration-500 group"
-              >
-                <div className={`w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 ${stat.color} flex items-center justify-center mb-6 transition-all group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950`}>
-                  <stat.icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-3xl font-black text-slate-950 dark:text-white mb-1 tracking-tighter">{stat.value}</h3>
-                <p className="text-primary text-[10px] font-black uppercase tracking-widest mb-1">{stat.label}</p>
-                <p className="text-slate-400 text-[9px] font-bold uppercase tracking-widest">{stat.sub}</p>
-              </motion.div>
+              <StatCard key={stat.label} stat={stat} idx={idx} />
             ))}
           </div>
         </div>
@@ -81,7 +68,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800 text-blue-500 rounded-2xl group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-500">
+                  <div className="p-3 bg-white dark:bg-slate-800 text-blue-500 rounded-2xl group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-500 border border-slate-100 dark:border-slate-700">
                     <BarChart3 className="w-6 h-6" />
                   </div>
                   <h4 className="text-2xl font-black tracking-tighter text-slate-950 dark:text-white">Analisis Proker IME</h4>
@@ -94,8 +81,6 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 <span>Status: GBPK Terpenuhi</span>
               </div>
-              {/* Minimal Background Decor for Card */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-50 dark:bg-blue-400/10 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
             {/* Finance Analysis Card */}
@@ -107,7 +92,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">
-                  <div className="p-3 bg-slate-50 dark:bg-slate-800 text-emerald-500 rounded-2xl group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-500">
+                  <div className="p-3 bg-white dark:bg-slate-800 text-emerald-500 rounded-2xl group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-500 border border-slate-100 dark:border-slate-700">
                     <DollarSign className="w-6 h-6" />
                   </div>
                   <h4 className="text-2xl font-black tracking-tighter text-slate-950 dark:text-white">RKAT & Stabilitas Kas</h4>
@@ -120,16 +105,71 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Status Finansial Aman</span>
               </div>
-              {/* Minimal Background Decor for Card */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-emerald-50 dark:bg-emerald-400/10 rounded-full blur-3xl pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </div>
         )}
       </div>
 
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-blue-50 dark:bg-blue-900/20 rounded-full blur-[120px] pointer-events-none" />
     </section>
+  );
+}
+
+function StatCard({ stat, idx }: any) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+  
+  const targetValue = parseFloat(stat.value.replace(/[^0-9.]/g, ''));
+  const isPercent = stat.value.includes('%');
+  
+  useEffect(() => {
+    if (isInView && !isNaN(targetValue)) {
+      let start = 0;
+      const end = targetValue;
+      const duration = 2000;
+      const stepTime = 50;
+      const steps = duration / stepTime;
+      const increment = end / steps;
+      
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          setCount(end);
+          clearInterval(timer);
+        } else {
+          setCount(start);
+        }
+      }, stepTime);
+      
+      return () => clearInterval(timer);
+    }
+  }, [isInView, targetValue]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: idx * 0.1, duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-primary/40 transition-all duration-700 group hover:-translate-y-2"
+    >
+      <div className={`w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 ${stat.color} flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 group-hover:scale-110 group-hover:rotate-6 shadow-sm`}>
+        <stat.icon className="w-6 h-6" />
+      </div>
+      <h3 className="text-4xl font-black text-slate-950 dark:text-white mb-2 tracking-tighter flex items-baseline">
+        {!isNaN(targetValue) ? (
+          <>
+            {isPercent ? count.toFixed(1) : Math.floor(count)}
+            <span className="text-primary ml-0.5">{isPercent ? "%" : ""}</span>
+          </>
+        ) : stat.value}
+      </h3>
+      <p className="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-1.5">{stat.label}</p>
+      <div className="flex items-center space-x-2">
+        <div className="w-1 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
+        <p className="text-slate-400 text-[9px] font-bold uppercase tracking-widest leading-none">{stat.sub}</p>
+      </div>
+    </motion.div>
   );
 }

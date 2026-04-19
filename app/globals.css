@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit), var(--font-sans);
+  --font-sans: var(--font-jakarta), var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-outfit);
+  --font-heading: var(--font-jakarta);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -90,12 +90,18 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    @apply text-foreground antialiased selection:bg-primary/20;
+    font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
     background-image: var(--background-image-mesh);
     background-attachment: fixed;
+    font-style: normal !important;
   }
   html {
+    font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
     @apply font-sans;
+    font-style: normal !important;
   }
 }
 

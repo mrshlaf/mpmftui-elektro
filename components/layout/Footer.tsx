@@ -21,7 +21,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative pt-32 pb-12 bg-slate-950 border-t border-slate-900/50 overflow-hidden text-white font-outfit">
+    <footer className="relative pt-32 pb-12 bg-slate-950 border-t border-slate-900/50 overflow-hidden text-white font-sans">
       {/* Dynamic Background Blurs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[180px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/[0.05] rounded-full blur-[150px] pointer-events-none" />

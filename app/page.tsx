@@ -18,8 +18,8 @@ export default async function HomePage() {
       <Navbar />
       <main className="min-h-screen bg-background">
         <HeroSection />
-        <PortalCards />
         <VisionMission isTeaser={true} />
+        <PortalCards />
         <TransparencyDashboard isTeaser={true} />
         <ProductShowcase isTeaser={true} />
         <ActivityGallery activities={activities} />

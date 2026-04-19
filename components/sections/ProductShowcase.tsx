@@ -103,7 +103,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
   const activeProduct = productData.find(p => p.id === activeTab)!;
 
   return (
-    <section className={`bg-background relative overflow-hidden ${isTeaser ? "py-24" : "py-32"}`} id="produk">
+    <section className={`bg-background relative overflow-hidden font-sans ${isTeaser ? "py-32" : "py-40"}`} id="produk">
       <div className="container mx-auto px-6 relative z-10">
         <div className={`flex flex-col ${isTeaser ? "items-center text-center" : "lg:flex-row items-end justify-between"} mb-20 gap-12`}>
           <div className={`${isTeaser ? "max-w-4xl" : "max-w-4xl"}`}>
@@ -113,17 +113,18 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               viewport={{ once: true }}
               className={`flex items-center space-x-3 text-primary mb-6 ${isTeaser ? "justify-center" : ""}`}
             >
-              <Sparkles className="w-5 h-5" />
-              <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Strategic Infrastructure</span>
+              <Sparkles className="w-5 h-5 animate-pulse" />
+              <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Infrastructure &bull; Sintesa</span>
             </motion.div>
             <motion.h2
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8]`}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-sans`}
             >
               Produk <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">Fraksi</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-400">Fraksi 2026</span>
             </motion.h2>
           </div>
           {!isTeaser && (
@@ -131,13 +132,15 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
               className="text-slate-500 dark:text-slate-400 text-lg md:text-xl max-w-sm leading-relaxed font-bold border-l-4 border-primary pl-8"
             >
-              Empat pilar program kerja strategis untuk mewujudkan transparansi dan kemajuan Departemen Teknik Elektro.
+              Empat pilar program kerja strategis yang dirancang untuk membangun sistem pengawasan and pemberdayaan yang transparan.
             </motion.p>
           )}
+        </div>
           {isTeaser && (
-            <div className="mt-8">
+            <div className="mt-8 mb-12">
               <Link href="/profrak">
                 <button className="px-10 h-16 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 rounded-[1.5rem] font-black tracking-widest uppercase text-xs flex items-center space-x-3 hover:bg-primary transition-all shadow-xl hover:-translate-y-1 group">
                   <span>Lihat Seluruh Program Kerja</span>
@@ -146,25 +149,32 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               </Link>
             </div>
           )}
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Side Nav */}
           <div className="lg:col-span-4 flex flex-col space-y-3">
             {productData.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center space-x-6 p-6 rounded-[2rem] transition-all duration-500 text-left ${
+                className={`flex items-center space-x-6 p-6 rounded-[2rem] transition-all duration-700 text-left relative overflow-hidden group ${
                   activeTab === item.id 
-                    ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-2xl shadow-slate-200 dark:shadow-none` 
-                    : "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
+                    ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-2xl shadow-primary/20 scale-[1.02]` 
+                    : "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-primary/30 hover:bg-white dark:hover:bg-slate-800 hover:translate-x-2 shadow-sm"
                 }`}
               >
+                {activeTab === item.id && (
+                  <motion.div
+                    layoutId="activeTabBg"
+                    className="absolute inset-0 bg-primary/10 dark:bg-primary/20 pointer-events-none"
+                    initial={false}
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border transition-all duration-500 ${
                   activeTab === item.id 
                     ? 'bg-white dark:bg-slate-900 text-slate-950 dark:text-white border-white dark:border-slate-700 rotate-12' 
-                    : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 dark:text-slate-500 group-hover:rotate-12'
+                    : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 dark:text-slate-500 group-hover:rotate-12 group-hover:bg-slate-950 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-slate-950'
                 }`}>
                   <item.icon className="w-5 h-5" />
                 </div>
@@ -183,31 +193,34 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.4, ease: "circOut" }}
                 className={`p-10 md:p-14 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-100/50 dark:shadow-none relative overflow-hidden h-full flex flex-col justify-between ${isTeaser ? "min-h-[400px]" : ""}`}
               >
+                {/* Decorative Inner Glow */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent pointer-events-none" />
+                
                 <div className="relative z-10">
                   <div className="flex flex-wrap gap-3 items-center mb-10">
                     <span className="text-[9px] bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 font-black uppercase tracking-[0.2em] px-4 py-2 rounded-xl">
                       Objek: {activeProduct.target}
                     </span>
                     {!isTeaser && (
-                      <Link href={activeProduct.link} target={activeProduct.link.startsWith("http") ? "_blank" : "_self"} className="text-[9px] bg-white dark:bg-slate-800 text-slate-950 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all font-black uppercase tracking-[0.2em] px-4 py-2 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center shadow-sm">
+                      <Link href={activeProduct.link} target={activeProduct.link.startsWith("http") ? "_blank" : "_self"} className="text-[9px] bg-white dark:bg-slate-800 text-slate-950 dark:text-white hover:border-primary/50 hover:bg-white dark:hover:bg-slate-700 transition-all font-black uppercase tracking-[0.2em] px-4 py-2 rounded-xl border border-slate-100 dark:border-slate-700 flex items-center shadow-sm">
                         Pelajari Detail <ExternalLink className="ml-2 w-3 h-3" />
                       </Link>
                     )}
                   </div>
                   
-                  <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter ${isTeaser ? "text-5xl" : "text-4xl md:text-6xl"}`}>
+                  <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter font-sans ${isTeaser ? "text-5xl" : "text-4xl md:text-6xl"}`}>
                     {activeProduct.title}
                   </h3>
-                  <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed italic ${isTeaser ? "text-xl md:text-2xl" : "text-lg md:text-2xl mb-14"}`}>
+                  <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed ${isTeaser ? "text-xl md:text-2xl" : "text-lg md:text-2xl mb-14"}`}>
                     {activeProduct.desc}
                   </p>
                   
                   {!isTeaser && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-14">
-                      <div className="space-y-6 p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-800/50">
+                      <div className="space-y-6 p-8 rounded-[2rem] bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
                         <div className="flex items-center space-x-3 text-slate-950 dark:text-white">
                           <Activity className="w-5 h-5 text-primary" />
                           <h4 className="font-black tracking-widest uppercase text-[10px]">Teknis Pelaksanaan</h4>
@@ -256,9 +269,6 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
         </div>
       </div>
       
-      {/* Background Decor */}
-      <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-20 left-0 w-[400px] h-[400px] bg-blue-50 dark:bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
     </section>
   );
 }

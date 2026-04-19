@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Outfit, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { ThemeProvider } from "@/components/ThemeContext";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${outfit.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+    <html lang="id" className={`${plusJakartaSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <body className={`${plusJakartaSans.className} min-h-screen bg-background text-foreground antialiased selection:bg-primary/20`}>
         <Providers>
           <ThemeProvider>
             {children}

@@ -38,26 +38,24 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-4 md:p-6 lg:p-8 transition-all duration-500">
+    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-0 transition-all duration-300">
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className={`relative transition-all duration-700 ease-in-out flex items-center justify-between rounded-[2.5rem] border ${
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`w-full transition-all duration-500 ease-in-out flex items-center justify-between px-6 py-4 md:px-12 md:py-5 border-b ${
           scrolled 
-            ? "w-full max-w-4xl px-6 py-2.5 md:py-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border-slate-200/50 dark:border-slate-800/50 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]" 
-            : "w-full max-w-7xl px-8 py-4 md:py-6 bg-transparent border-transparent"
+            ? "bg-white/70 dark:bg-slate-900/80 backdrop-blur-2xl border-slate-200/50 dark:border-slate-800/50 shadow-lg" 
+            : "bg-transparent border-transparent"
         }`}
       >
         {/* Logo Section */}
         <Link href="/" className="flex items-center space-x-3 group relative z-50">
-          <div className={`transition-all duration-500 rounded-2xl bg-white dark:bg-white flex items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-xl group-hover:scale-110 ${
-            scrolled ? "w-9 h-9 md:w-11 md:h-11" : "w-11 h-11 md:w-14 md:h-14"
-          }`}>
-            <img src="/logo-mpm.png" alt="MPM Logo" className="w-full h-full object-contain p-1.5 md:p-2" />
+          <div className="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 rounded-xl bg-white flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm group-hover:scale-105">
+            <img src="/logo-mpm.png" alt="MPM Logo" className="w-full h-full object-contain p-1.5" />
           </div>
-          <div className={`flex flex-col transition-all duration-500 ${scrolled ? "scale-90 origin-left" : "scale-100"}`}>
-            <span className="text-slate-950 dark:text-white font-black tracking-tighter text-base md:text-xl block leading-none uppercase">SINTESA KARSA</span>
-            <span className="text-[9px] md:text-[10px] text-primary font-black uppercase tracking-[0.2em] mt-0.5">Fraksi Elektro 2026</span>
+          <div className="flex flex-col">
+            <span className="text-slate-950 dark:text-white font-black tracking-tighter text-base md:text-lg block leading-none uppercase">SINTESA KARSA</span>
+            <span className="text-[9px] text-primary font-black uppercase tracking-[0.2em] mt-0.5">Fraksi Elektro 2026</span>
           </div>
         </Link>
 
@@ -77,7 +75,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-slate-950 dark:bg-slate-50 rounded-full shadow-lg shadow-slate-900/10 dark:shadow-white/10"
+                      className="absolute inset-0 bg-slate-950 dark:bg-slate-50 rounded-full"
                       transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
                     />
                   )}
@@ -136,7 +134,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 200 }}
-              className="fixed top-0 right-0 w-full md:w-[450px] h-screen bg-white dark:bg-slate-950 shadow-2xl z-[105] lg:hidden border-l border-slate-100 dark:border-slate-800 p-8 pt-28"
+              className="fixed top-0 right-0 w-full md:w-[400px] h-screen bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl z-[105] lg:hidden border-l border-slate-100 dark:border-slate-800 p-8 pt-28"
             >
               <div className="flex flex-col h-full justify-between pb-10">
                 <div className="space-y-2">
