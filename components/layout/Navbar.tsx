@@ -39,19 +39,17 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-0 transition-all duration-300">
+    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit px-6 transition-all duration-500`}>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`w-full transition-all duration-500 ease-in-out flex items-center justify-between px-6 py-4 md:px-12 md:py-5 border-b ${
+        className={`flex items-center space-x-2 md:space-x-4 px-4 py-2.5 md:px-6 md:py-3.5 rounded-full border shadow-2xl transition-all duration-500 ${
           scrolled 
-            ? "bg-white/70 dark:bg-slate-900/80 backdrop-blur-2xl border-slate-200/50 dark:border-slate-800/50 shadow-lg" 
-            : "bg-transparent border-transparent"
+            ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-3xl border-slate-200/50 dark:border-slate-800/50 shadow-primary/10 scale-100" 
+            : "bg-white/40 dark:bg-slate-950/40 backdrop-blur-2xl border-white/20 dark:border-white/5 scale-[1.02]"
         }`}
       >
         {/* Logo Section */}
-        <Link href="/" className="flex items-center space-x-3 group relative z-50">
-          <div className="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 rounded-xl bg-white flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm group-hover:scale-105 relative">
+        <Link href="/" className="flex items-center space-x-2.5 mr-6 group relative z-50">
+          <div className="w-9 h-9 md:w-11 md:h-11 transition-all duration-500 rounded-[0.9rem] bg-white flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm group-hover:scale-105 group-hover:rotate-3 relative">
             <Image 
               src="/logo-mpm.png" 
               alt="MPM Logo" 
@@ -60,62 +58,55 @@ export default function Navbar() {
               priority
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-slate-950 dark:text-white font-black tracking-tighter text-base md:text-lg block leading-none uppercase">SINTESA KARSA</span>
-            <span className="text-[9px] text-primary font-black uppercase tracking-[0.2em] mt-0.5">Fraksi Elektro 2026</span>
+          <div className="hidden sm:flex flex-col">
+            <span className="text-slate-950 dark:text-white font-black tracking-tight text-sm md:text-base block leading-none uppercase">SINTESA KARSA</span>
+            <span className="text-[8px] text-primary font-black uppercase tracking-[0.15em] mt-0.5 whitespace-nowrap">Fraksi Elektro 2026</span>
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center bg-slate-100/30 dark:bg-slate-800/20 p-1.5 rounded-full border border-slate-200/20 dark:border-white/5">
-          <div className="flex items-center space-x-1">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`relative px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-colors duration-300 ${
-                    isActive ? "text-white dark:text-slate-950" : "text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activePill"
-                      className="absolute inset-0 bg-slate-950 dark:bg-slate-50 rounded-full"
-                      transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.name}</span>
-                </Link>
-              );
-            })}
-          </div>
+        <div className="hidden md:flex items-center space-x-1">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`relative px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-colors duration-300 ${
+                  isActive ? "text-slate-950 dark:text-white" : "text-slate-500 hover:text-slate-950 dark:hover:text-white"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activePill"
+                    className="absolute inset-0 bg-primary/20 dark:bg-primary/30 rounded-full"
+                    transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">{link.name}</span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Action Buttons (Desktop) */}
-        <div className="hidden lg:flex items-center space-x-3">
-          <div className="h-6 w-[1px] bg-slate-200 dark:bg-slate-800 mr-2" />
+        <div className="hidden md:flex items-center space-x-2">
+          <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-800 mx-1" />
           <ThemeToggle />
           <Link href="/admin/login">
             <motion.div 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-400 hover:text-primary transition-colors shadow-sm"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 hover:bg-primary transition-colors shadow-lg"
             >
-              <LockIcon className="w-4 h-4" />
+              <LockIcon className="w-3.5 h-3.5" />
             </motion.div>
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-2">
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`relative z-[110] w-11 h-11 flex items-center justify-center rounded-2xl transition-all duration-300 ${
-              isOpen ? "bg-slate-100 dark:bg-slate-800 text-slate-950 dark:text-white rotate-90" : "bg-slate-50 dark:bg-slate-800 text-slate-950 dark:text-white"
-            }`}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-lg"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

@@ -41,7 +41,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
             {isTeaser && (
               <div className="mt-12">
                 <Link href="/transparansi">
-                  <button className="px-10 h-16 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 rounded-[1.5rem] font-black tracking-widest uppercase text-xs flex items-center space-x-3 hover:bg-primary transition-all shadow-xl hover:-translate-y-1 group">
+                  <button className="w-full md:w-auto px-10 h-14 md:h-16 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 rounded-[1.25rem] md:rounded-[1.5rem] font-black tracking-widest uppercase text-[10px] md:text-xs flex items-center justify-center md:justify-start space-x-3 hover:bg-primary transition-all shadow-xl hover:-translate-y-1 group">
                     <span>Buka Dashboard Transparansi</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </button>
