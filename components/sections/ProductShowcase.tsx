@@ -152,21 +152,21 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Side Nav */}
-          <div className="lg:col-span-4 flex flex-col space-y-3">
+          <div className="lg:col-span-4 flex flex-col space-y-4 px-4 -mx-4 group/sidenav">
             {productData.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-700 text-left relative overflow-hidden group ${
+                className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-700 text-left relative group ${
                   activeTab === item.id 
-                    ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-2xl shadow-primary/20 scale-[1.02]` 
+                    ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-[0_20px_50px_-12px_rgba(59,130,246,0.3)] scale-[1.02] z-10` 
                     : "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-primary/30 hover:bg-white dark:hover:bg-slate-800 hover:translate-x-2 shadow-sm"
                 }`}
               >
                 {activeTab === item.id && (
                   <motion.div
                     layoutId="activeTabBg"
-                    className="absolute inset-0 bg-primary/10 dark:bg-primary/20 pointer-events-none"
+                    className="absolute inset-0 bg-primary/10 dark:bg-primary/20 pointer-events-none rounded-[1.5rem] md:rounded-[2rem]"
                     initial={false}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
@@ -193,11 +193,13 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                className={`p-10 md:p-14 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-100/50 dark:shadow-none relative overflow-hidden h-full flex flex-col justify-between ${isTeaser ? "min-h-[400px]" : ""}`}
+                className={`p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-[0_20px_50px_rgba(59,130,246,0.1)] transition-all duration-700 flex flex-col justify-between relative group ${isTeaser ? "min-h-[400px]" : ""}`}
               >
                 {/* Decorative Inner Glow */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-transparent pointer-events-none" />
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem] bg-gradient-to-br from-primary/[0.02] to-transparent"
+                />
                 
                 <div className="relative z-10">
                   <div className="flex flex-wrap gap-3 items-center mb-10">

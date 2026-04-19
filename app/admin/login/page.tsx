@@ -66,7 +66,7 @@ export default function LoginPage() {
         transition={{ duration: 0.8, ease: "circOut" }}
         className="w-full max-w-xl z-10"
       >
-        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-12 md:p-16 rounded-[4rem] shadow-[0_40px_120px_rgba(0,0,0,0.06)] dark:shadow-none relative overflow-hidden group">
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-[0_40px_120px_rgba(0,0,0,0.06)] dark:shadow-none relative overflow-hidden group">
           
           {/* Header */}
           <div className="text-center mb-16 relative z-10">
@@ -78,8 +78,8 @@ export default function LoginPage() {
             >
               <ShieldCheck className="w-10 h-10 text-white dark:text-slate-950" />
             </motion.div>
-            <h1 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white tracking-[0.1em] mb-4 leading-none uppercase">Secure</h1>
-            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 tracking-[0.1em] leading-none uppercase italic">Workspace</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white tracking-[0.05em] mb-2 leading-none uppercase font-heading">Secure</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 tracking-[0.05em] leading-none uppercase font-heading">Workspace</h1>
             <div className="mt-6 flex items-center justify-center py-2 px-6 bg-slate-50 dark:bg-slate-800 rounded-full w-fit mx-auto border border-slate-100 dark:border-slate-700">
               <span className="text-slate-400 dark:text-slate-500 text-[9px] font-black uppercase tracking-[0.5em] leading-none">SINTESA KARSA 2026 Node</span>
             </div>

@@ -51,7 +51,7 @@ export default function TriasSection() {
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading"
+              className="text-3xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading"
             >
               Pilar Pelayanan <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Digital</span>
@@ -112,10 +112,10 @@ function TriasCard({ item, idx }: any) {
       className="group h-full"
     >
       <Link href={item.link} target="_blank" className="block h-full">
-        <div className="h-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-10 rounded-[3rem] transition-all duration-700 hover:border-primary/40 hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_40px_100px_rgba(0,0,0,0.4)] flex flex-col justify-between relative overflow-hidden shadow-sm dark:shadow-none translate-z-10">
+        <div className="h-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-10 rounded-[3rem] transition-all duration-700 hover:border-primary/40 hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_40px_100px_rgba(0,0,0,0.4)] flex flex-col justify-between relative shadow-sm dark:shadow-none translate-z-10">
           {/* Spotlight */}
           <motion.div
-            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem]"
             style={{
               background: useTransform(
                 [mouseX, mouseY],

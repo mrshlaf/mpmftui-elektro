@@ -30,7 +30,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               <TrendingUp className="w-5 h-5" />
               <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Analytical Oversight</span>
             </motion.div>
-            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground font-heading ${isTeaser ? "text-5xl md:text-9xl" : "text-5xl md:text-8xl"}`}>
+            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground font-heading ${isTeaser ? "text-4xl md:text-9xl" : "text-4xl md:text-8xl"}`}>
               Insight & <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Transparansi</span>
             </h2>
@@ -64,7 +64,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
+              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-[0_20px_50px_rgba(59,130,246,0.1)] transition-all duration-700 flex flex-col justify-between relative group"
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">
@@ -88,7 +88,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-700 flex flex-col justify-between relative overflow-hidden group"
+              className="p-10 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-[0_20px_50px_rgba(16,185,129,0.1)] transition-all duration-700 flex flex-col justify-between relative group"
             >
               <div className="relative z-10">
                 <div className="flex items-center space-x-4 mb-8">

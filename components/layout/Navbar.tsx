@@ -39,7 +39,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit px-6 transition-all duration-500`}>
+    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-2rem)] md:w-full max-w-fit px-0 md:px-6 transition-all duration-500`}>
       <motion.nav
         className={`flex items-center space-x-2 md:space-x-4 px-4 py-2.5 md:px-6 md:py-3.5 rounded-full border shadow-2xl transition-all duration-500 ${
           scrolled 

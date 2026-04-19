@@ -40,8 +40,8 @@ export function DashboardClientUI({ stats, blocks }: { stats: StatItem[], blocks
             <Sparkles className="w-6 h-6" />
             <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Node Authorized</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black text-slate-950 dark:text-white tracking-tighter mb-4 leading-none">
-            Selamat Datang, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600 italic">Admin</span>
+          <h1 className="text-3xl md:text-6xl font-black text-slate-950 dark:text-white tracking-tighter mb-4 leading-none font-heading">
+            Selamat Datang, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Admin</span>
           </h1>
           <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 font-bold max-w-2xl leading-relaxed">
             Monitor dan publikasikan aspirasi IKM UI melalui ekosistem digital SINTESA KARSA 2026.
@@ -75,8 +75,8 @@ export function DashboardClientUI({ stats, blocks }: { stats: StatItem[], blocks
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-1">{stat.value}</h3>
-                    <p className="text-slate-500 dark:text-slate-400 text-xs font-black uppercase tracking-widest">{stat.label}</p>
+                    <h3 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-1 font-heading">{stat.value}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs font-black uppercase tracking-widest leading-none">{stat.label}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -112,7 +112,7 @@ export function DashboardClientUI({ stats, blocks }: { stats: StatItem[], blocks
                 <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center opacity-40">
                   <Zap className="w-8 h-8 text-slate-300 dark:text-slate-600" />
                 </div>
-                <p className="text-slate-500 dark:text-slate-400 font-bold italic tracking-tight">{block.placeholder}</p>
+                <p className="text-slate-500 dark:text-slate-400 font-bold tracking-tight text-sm md:text-base">{block.placeholder}</p>
               </div>
             </motion.div>
           );
