@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ExternalLink, MessageCircle, Mail, Lock as LockIcon, Zap, ArrowUpRight } from "lucide-react";
+import { Menu, X, ExternalLink, MessageCircle, Mail, Lock as LockIcon, ArrowUpRight, ChevronRight } from "lucide-react";
 import ThemeToggle from "../ThemeToggle";
 
 export default function Navbar() {
@@ -13,10 +13,21 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
 
   const navLinks = [
     { name: "Beranda", href: "/" },
@@ -26,108 +37,160 @@ export default function Navbar() {
     { name: "Transparansi", href: "/transparansi" },
   ];
 
-  const isSolid = scrolled || pathname !== "/";
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-4 lg:p-6 transition-all duration-300">
+    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-4 md:p-6 lg:p-8 transition-all duration-500">
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`w-full max-w-5xl transition-all duration-500 rounded-[2.5rem] px-8 py-3 md:py-4 flex items-center justify-between ${
+        className={`relative transition-all duration-700 ease-in-out flex items-center justify-between rounded-[2.5rem] border ${
           scrolled 
-            ? "glass shadow-[0_20px_40px_rgba(0,0,0,0.04)] border border-white/40" 
-            : "bg-transparent border border-transparent"
+            ? "w-full max-w-4xl px-6 py-2.5 md:py-3 bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border-slate-200/50 dark:border-slate-800/50 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]" 
+            : "w-full max-w-7xl px-8 py-4 md:py-6 bg-transparent border-transparent"
         }`}
       >
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3 group">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-white rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100 dark:border-slate-800">
-            <img src="/logo-mpm.png" alt="Logo MPM" className="w-full h-full object-contain p-1.5" />
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center space-x-3 group relative z-50">
+          <div className={`transition-all duration-500 rounded-2xl bg-white dark:bg-white flex items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm group-hover:shadow-xl group-hover:scale-110 ${
+            scrolled ? "w-9 h-9 md:w-11 md:h-11" : "w-11 h-11 md:w-14 md:h-14"
+          }`}>
+            <img src="/logo-mpm.png" alt="MPM Logo" className="w-full h-full object-contain p-1.5 md:p-2" />
           </div>
-          <div className="hidden sm:block">
-            <span className="text-slate-900 dark:text-white font-black tracking-tight text-lg block leading-none uppercase">SINTESA KARSA</span>
-            <span className="text-[10px] text-primary font-black uppercase tracking-[0.2em]">Fraksi Elektro 2026</span>
+          <div className={`flex flex-col transition-all duration-500 ${scrolled ? "scale-90 origin-left" : "scale-100"}`}>
+            <span className="text-slate-950 dark:text-white font-black tracking-tighter text-base md:text-xl block leading-none uppercase">SINTESA KARSA</span>
+            <span className="text-[9px] md:text-[10px] text-primary font-black uppercase tracking-[0.2em] mt-0.5">Fraksi Elektro 2026</span>
           </div>
         </Link>
 
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-2">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                pathname === link.href 
-                  ? "bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-xl shadow-slate-200 dark:shadow-none" 
-                  : "text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          
-          <div className="w-[1px] h-4 bg-slate-100 dark:bg-slate-800 mx-4" />
-
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            <Link href="/admin/login" title="Admin Access">
-              <div className="p-2.5 rounded-full border border-slate-100 dark:border-slate-800 text-slate-400 hover:text-slate-950 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
-                <LockIcon className="w-4 h-4" />
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden w-11 h-11 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-950 dark:text-white" 
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            className="absolute top-24 left-4 right-4 bg-white dark:bg-slate-900 p-4 rounded-[2.5rem] shadow-2xl md:hidden border border-slate-100 dark:border-slate-800"
-          >
-            <div className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center bg-slate-100/30 dark:bg-slate-800/20 p-1.5 rounded-full border border-slate-200/20 dark:border-white/5">
+          <div className="flex items-center space-x-1">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`flex items-center justify-between p-5 rounded-3xl transition-all ${
-                    pathname === link.href 
-                      ? "bg-slate-50 dark:bg-slate-800 text-slate-950 dark:text-white font-black" 
-                      : "text-slate-500 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-950 dark:hover:text-white"
+                  className={`relative px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-colors duration-300 ${
+                    isActive ? "text-white dark:text-slate-950" : "text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
                   }`}
-                  onClick={() => setIsOpen(false)}
                 >
-                  <span className="text-sm uppercase tracking-widest">{link.name}</span>
-                  <ArrowUpRight className={`w-4 h-4 ${pathname === link.href ? "opacity-100" : "opacity-0"}`} />
+                  {isActive && (
+                    <motion.div
+                      layoutId="activePill"
+                      className="absolute inset-0 bg-slate-950 dark:bg-slate-50 rounded-full shadow-lg shadow-slate-900/10 dark:shadow-white/10"
+                      transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.name}</span>
                 </Link>
-              ))}
-              <div className="h-4" />
-              <div className="flex items-center justify-between px-2 py-4 border-t border-slate-100 dark:border-slate-800">
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Toggle Theme</span>
-                <ThemeToggle />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Action Buttons (Desktop) */}
+        <div className="hidden lg:flex items-center space-x-3">
+          <div className="h-6 w-[1px] bg-slate-200 dark:bg-slate-800 mr-2" />
+          <ThemeToggle />
+          <Link href="/admin/login">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-400 hover:text-primary transition-colors shadow-sm"
+            >
+              <LockIcon className="w-4 h-4" />
+            </motion.div>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="lg:hidden flex items-center space-x-4">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`relative z-[110] w-11 h-11 flex items-center justify-center rounded-2xl transition-all duration-300 ${
+              isOpen ? "bg-slate-100 dark:bg-slate-800 text-slate-950 dark:text-white rotate-90" : "bg-slate-50 dark:bg-slate-800 text-slate-950 dark:text-white"
+            }`}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Modern Full-Screen Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-white/40 dark:bg-slate-950/40 backdrop-blur-2xl z-[100] lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Menu Content */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 200 }}
+              className="fixed top-0 right-0 w-full md:w-[450px] h-screen bg-white dark:bg-slate-950 shadow-2xl z-[105] lg:hidden border-l border-slate-100 dark:border-slate-800 p-8 pt-28"
+            >
+              <div className="flex flex-col h-full justify-between pb-10">
+                <div className="space-y-2">
+                  <div className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8 px-4">Navigation Menu</div>
+                  {navLinks.map((link, idx) => (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + idx * 0.1 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`group flex items-center justify-between p-5 rounded-3xl transition-all hover:bg-slate-50 dark:hover:bg-slate-900 ${
+                          pathname === link.href ? "bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800" : ""
+                        }`}
+                      >
+                        <div className="flex items-center space-x-5">
+                          <span className={`text-[10px] font-black text-slate-300 dark:text-slate-700`}>0{idx + 1}</span>
+                          <span className={`text-2xl font-black uppercase tracking-tighter ${
+                            pathname === link.href ? "text-primary" : "text-slate-500 dark:text-slate-400 group-hover:text-slate-950 dark:group-hover:text-white"
+                          }`}>{link.name}</span>
+                        </div>
+                        <ChevronRight className={`w-5 h-5 transition-transform duration-300 ${pathname === link.href ? "text-primary rotate-90" : "text-slate-200 dark:text-slate-800 group-hover:translate-x-1"}`} />
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="space-y-6 px-4">
+                  <div className="h-px bg-slate-100 dark:bg-slate-900 w-full" />
+                  <div className="flex flex-col space-y-4">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Portal Akses</span>
+                    <Link
+                      href="/admin/login"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-center space-x-3 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl"
+                    >
+                      <LockIcon className="w-4 h-4" />
+                      <span>Admin Portal Access</span>
+                    </Link>
+                  </div>
+                  <div className="pt-4 flex justify-between items-center text-[10px] font-black text-slate-400 tracking-widest uppercase">
+                    <span>MPM FTUI Elektro &bull; 2026</span>
+                    <div className="flex space-x-4">
+                      <Mail className="w-4 h-4" />
+                      <MessageCircle className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <Link
-                href="/admin/login"
-                className="flex items-center justify-center space-x-3 bg-slate-950 dark:bg-slate-900 text-white p-5 rounded-3xl font-black text-xs uppercase tracking-[0.2em]"
-                onClick={() => setIsOpen(false)}
-              >
-                <LockIcon className="w-4 h-4" />
-                <span>Admin Portal</span>
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
