@@ -17,9 +17,9 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
   ];
 
   return (
-    <section className={`bg-background text-foreground relative overflow-hidden ${isTeaser ? "py-24" : "py-32"}`} id="transparansi">
+    <section className={`bg-background text-foreground relative overflow-hidden ${isTeaser ? "py-16 md:py-24" : "py-24 md:py-32"}`} id="transparansi">
       <div className="container mx-auto px-6 relative z-10">
-        <div className={`flex flex-col ${isTeaser ? "items-center text-center" : "lg:flex-row items-start justify-between"} mb-20 gap-12`}>
+        <div className={`flex flex-col ${isTeaser ? "items-center text-center" : "lg:flex-row items-start justify-between"} mb-12 md:mb-20 gap-12`}>
           <div className={`${isTeaser ? "max-w-4xl flex flex-col items-center" : "max-w-2xl"}`}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

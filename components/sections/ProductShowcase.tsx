@@ -103,10 +103,10 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
   const activeProduct = productData.find(p => p.id === activeTab)!;
 
   return (
-    <section className={`bg-background relative overflow-hidden font-sans ${isTeaser ? "py-32" : "py-40"}`} id="produk">
+    <section className={`bg-background relative overflow-hidden font-sans ${isTeaser ? "py-12 md:py-32" : "py-16 md:py-40"}`} id="produk">
       <div className="container mx-auto px-6 relative z-10">
-        <div className={`flex flex-col ${isTeaser ? "items-center text-center" : "lg:flex-row items-end justify-between"} mb-20 gap-12`}>
-          <div className={`${isTeaser ? "max-w-4xl" : "max-w-4xl"}`}>
+        <div className={`flex flex-col ${isTeaser ? "items-center text-center" : "lg:flex-row items-end justify-between"} mb-12 md:mb-20 gap-8`}>
+          <div className="max-w-4xl mb-8 md:mb-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -133,7 +133,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-slate-500 dark:text-slate-400 text-lg md:text-xl max-w-sm leading-relaxed font-bold border-l-4 border-primary pl-8"
+              className="text-slate-500 dark:text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed font-bold"
             >
               Empat pilar program kerja strategis yang dirancang untuk membangun sistem pengawasan and pemberdayaan yang transparan.
             </motion.p>
@@ -159,16 +159,16 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                 onClick={() => setActiveTab(item.id)}
                 className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-700 text-left relative group ${
                   activeTab === item.id 
-                    ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-[0_20px_50px_-12px_rgba(59,130,246,0.3)] scale-[1.02] z-10` 
+                    ? `text-white dark:text-slate-950 shadow-[0_20px_50px_-12px_rgba(59,130,246,0.3)] scale-[1.02] z-10` 
                     : "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-primary/30 hover:bg-white dark:hover:bg-slate-800 hover:translate-x-2 shadow-sm"
                 }`}
               >
                 {activeTab === item.id && (
                   <motion.div
                     layoutId="activeTabBg"
-                    className="absolute inset-0 bg-primary/10 dark:bg-primary/20 pointer-events-none rounded-[1.5rem] md:rounded-[2rem]"
+                    className="absolute inset-0 bg-slate-950 dark:bg-slate-50 pointer-events-none rounded-[1.5rem] md:rounded-[2rem] -z-10"
                     initial={false}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    transition={{ type: "spring", bounce: 0.1, duration: 0.5 }}
                   />
                 )}
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border transition-all duration-500 ${
@@ -202,7 +202,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                 />
                 
                 <div className="relative z-10">
-                  <div className="flex flex-wrap gap-3 items-center mb-10">
+                  <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-8">
                     <span className="text-[9px] bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 font-black uppercase tracking-[0.2em] px-4 py-2 rounded-xl">
                       Objek: {activeProduct.target}
                     </span>

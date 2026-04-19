@@ -34,9 +34,9 @@ const triasItems = [
 
 export default function TriasSection() {
   return (
-    <section className="py-24 bg-background relative overflow-hidden" id="layanan">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden" id="layanan">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-3xl">
             <motion.div
               initial={{ x: -20, opacity: 0 }}

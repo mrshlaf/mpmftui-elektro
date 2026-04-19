@@ -57,7 +57,7 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
 
   if (isTeaser) {
     return (
-      <section className="relative min-h-[80vh] flex items-center justify-center py-32 overflow-hidden bg-white dark:bg-black font-sans">
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center py-16 md:py-32 overflow-hidden bg-white dark:bg-black font-sans">
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
@@ -86,7 +86,7 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-xl md:text-4xl text-slate-600 dark:text-slate-400 font-bold leading-tight max-w-5xl mx-auto mb-16"
+              className="text-xl md:text-4xl text-slate-600 dark:text-slate-400 font-bold leading-tight max-w-5xl mx-auto mb-10 md:mb-16"
             >
               "Mewujudkan <span className="text-slate-950 dark:text-white font-black">MPM FTUI Fraksi Elektro 2026</span> yang Sinergis dalam kolaborasi dan Progresif dalam tanggung jawab."
             </motion.div>

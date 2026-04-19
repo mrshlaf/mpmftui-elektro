@@ -35,9 +35,9 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden" id="kegiatan">
+    <section className="py-16 md:py-32 bg-background relative overflow-hidden" id="kegiatan">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-10 md:mb-16 gap-8">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -57,7 +57,7 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Progresivitas</span>
             </motion.h2>
           </div>
-          <p className="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-bold leading-relaxed max-w-sm border-l-4 border-slate-100 dark:border-slate-800 pl-8">
+          <p className="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-bold leading-relaxed max-w-2xl">
             Dokumentasi langkah nyata Fraksi Elektro dalam mengawal aspirasi Warga DTE UI.
           </p>
         </div>

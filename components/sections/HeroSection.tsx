@@ -54,7 +54,7 @@ export default function HeroSection() {
   } as any;
 
   return (
-    <section className="relative min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-background">
+    <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center py-12 md:py-32 overflow-hidden bg-white dark:bg-black font-sans">
       {/* Light Premium Background Elements */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-30" />
 
@@ -123,7 +123,7 @@ export default function HeroSection() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-bold font-sans"
+              className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 mb-10 md:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-bold font-sans"
             >
               Bersama mewujudkan ekosistem aspiratif yang <span className="text-slate-950 dark:text-white font-black">progresif dan transparan</span> untuk seluruh Warga Teknik Elektro UI.
             </motion.p>
