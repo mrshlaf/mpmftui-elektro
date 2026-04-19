@@ -7,16 +7,53 @@ const teamGroups = [
   {
     category: "Pimpinan Fraksi",
     members: [
-      { name: "Devan (Tkom'24)", role: "Ketua Fraksi / SC IP Keuangan", icon: Shield },
-      { name: "Faris (E'24)", role: "Wakil Ketua / Agt Badan Legislasi", icon: Briefcase },
+      { 
+        name: "Danish Putra Devananda", 
+        fraksiRole: "Ketua Fraksi", 
+        pusatRole: "Komandan | SC IP Keuangan", 
+        icon: Shield 
+      },
+      { 
+        name: "Azra Farisi Muhammad", 
+        fraksiRole: "Wakil ketua Fraksi", 
+        pusatRole: "BALEG | SC GBPKD", 
+        icon: Briefcase 
+      },
     ]
   },
   {
     category: "Jajaran Koordinator",
     members: [
-      { name: "Marshal (Tkom'24)", role: "Sekretaris & Bendahara / SC Mabim", icon: Users },
-      { name: "Vito (E'24)", role: "PJ Humas / SC Pembinaan Lanjut", icon: Users },
-      { name: "Alif (E'24)", role: "PJ PSDM / SC Target GBHI", icon: Users },
+      { 
+        name: "Marshal Aufa Diliyana", 
+        fraksiRole: "Sekretaris Bendahara", 
+        pusatRole: "KOMSIS | SC Mabim", 
+        icon: Users 
+      },
+      { 
+        name: "Vito Madani Winata", 
+        fraksiRole: "Humas", 
+        pusatRole: "KOMSIS | SC Pembinaan Lanjut", 
+        icon: Users 
+      },
+      { 
+        name: "Muhammad Alif Haditsa", 
+        fraksiRole: "PSDM", 
+        pusatRole: "KOLEGA | SC Indeks Ketercapaian GBHI", 
+        icon: Users 
+      },
+    ]
+  },
+  {
+    category: "Staff Fraksi",
+    members: [
+      { name: "Nararya Zuhdi Parabhawa", fraksiRole: "Staff", pusatRole: "KOMSIS | Staff", icon: User },
+      { name: "Muhammad Dzaki Hidayatullah", fraksiRole: "Staff", pusatRole: "Litbang | Staff", icon: User },
+      { name: "Akmal Maftuh Putra Dien", fraksiRole: "Staff", pusatRole: "KOLEGA | Staff", icon: User },
+      { name: "Sultan Ariq Zaman Syari", fraksiRole: "Staff", pusatRole: "Kestari | Staff", icon: User },
+      { name: "Arafah Akbar Satria", fraksiRole: "Staff", pusatRole: "Litbang | Staff", icon: User },
+      { name: "Gabriel Sebastian Sitorus", fraksiRole: "Staff", pusatRole: "Baleg | Staff", icon: User },
+      { name: "Fadhil Akmal Adhiputra", fraksiRole: "Staff", pusatRole: "KOMANDAN | Staff", icon: User },
     ]
   }
 ];
@@ -85,7 +122,14 @@ export default function TeamSection() {
                       </div>
                       <div className="relative z-10">
                         <h4 className="text-xl font-black text-slate-950 dark:text-white tracking-tight mb-1 group-hover:text-primary transition-colors">{member.name}</h4>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors leading-relaxed">{member.role}</p>
+                        <div className="flex flex-col space-y-0.5">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors leading-relaxed">
+                            {member.fraksiRole}
+                          </p>
+                          <p className="text-[9px] font-bold text-slate-300 dark:text-slate-600 italic group-hover:text-slate-400 transition-colors">
+                            {member.pusatRole}
+                          </p>
+                        </div>
                       </div>
                       
                       {/* Decorative Element */}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+  </defs>
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Pillar left -->
+  <rect x="120" y="180" width="48" height="220" rx="8" fill="white" opacity="0.95"/>
+  <!-- Pillar center -->
+  <rect x="232" y="180" width="48" height="220" rx="8" fill="white" opacity="0.95"/>
+  <!-- Pillar right -->
+  <rect x="344" y="180" width="48" height="220" rx="8" fill="white" opacity="0.95"/>
+  <!-- Top beam / entablature -->
+  <rect x="88" y="140" width="336" height="52" rx="12" fill="white"/>
+  <!-- Pediment / triangle -->
+  <polygon points="256,68 408,140 104,140" fill="white" opacity="0.9"/>
+  <!-- Base -->
+  <rect x="88" y="388" width="336" height="44" rx="10" fill="white"/>
+  <!-- Star accent -->
+  <polygon points="256,82 262,100 280,100 266,112 271,130 256,120 241,130 246,112 232,100 250,100" fill="url(#bg)" opacity="0.8"/>
+</svg>
