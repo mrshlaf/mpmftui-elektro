@@ -121,7 +121,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading`}
+              className={`text-4xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading`}
             >
               Produk <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-400">Fraksi 2026</span>
@@ -157,7 +157,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center space-x-6 p-6 rounded-[2rem] transition-all duration-700 text-left relative overflow-hidden group ${
+                className={`flex items-center space-x-4 md:space-x-6 p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] transition-all duration-700 text-left relative overflow-hidden group ${
                   activeTab === item.id 
                     ? `bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 shadow-2xl shadow-primary/20 scale-[1.02]` 
                     : "bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:border-primary/30 hover:bg-white dark:hover:bg-slate-800 hover:translate-x-2 shadow-sm"
@@ -211,10 +211,10 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                     )}
                   </div>
                   
-                   <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter font-heading ${isTeaser ? "text-5xl" : "text-4xl md:text-6xl"}`}>
+                  <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter font-heading ${isTeaser ? "text-4xl md:text-5xl" : "text-3xl md:text-6xl"}`}>
                     {activeProduct.title}
                   </h3>
-                  <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed ${isTeaser ? "text-xl md:text-2xl" : "text-lg md:text-2xl mb-14"}`}>
+                  <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed ${isTeaser ? "text-lg md:text-2xl" : "text-base md:text-2xl mb-14"}`}>
                     {activeProduct.desc}
                   </p>
                   

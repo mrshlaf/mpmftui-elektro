@@ -75,7 +75,7 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl lg:text-9xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.9] md:leading-[0.8] mb-12 font-heading"
+              className="text-3xl md:text-8xl lg:text-9xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.9] md:leading-[0.8] mb-12 font-heading"
             >
               Visi Besar Kita <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 drop-shadow-[0_20px_100px_rgba(30,58,138,0.3)] animate-gradient-x">SINTESA KARSA</span>
@@ -133,17 +133,17 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Strategic Direction</span>
               </motion.div>
-              <h2 className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-7xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.85] mb-8 font-heading`}>
+              <h2 className={`text-4xl ${isTeaser ? "md:text-9xl" : "md:text-7xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.85] mb-8 font-heading`}>
                 Visi Besar <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">SINTESA KARSA</span>
               </h2>
-              <div className={`text-2xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed mb-10 ${isTeaser ? "max-w-4xl" : "max-w-lg"}`}>
+              <div className={`text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed mb-10 ${isTeaser ? "max-w-4xl" : "max-w-lg"}`}>
                 "Mewujudkan <span className="text-slate-950 dark:text-white font-black">MPM FTUI Fraksi Elektro 2026</span> yang Sinergis dalam kolaborasi dan Progresif dalam tanggung jawab, guna membangun garda Aspiratif yang kredibel bagi seluruh warga DTE UI."
               </div>
 
               {isTeaser && (
                 <Link href="/profil">
-                  <button className="px-10 h-16 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 rounded-[1.5rem] font-black tracking-widest uppercase text-xs flex items-center space-x-3 hover:bg-primary transition-all shadow-xl hover:-translate-y-1 group">
+                  <button className="w-full md:w-auto px-6 md:px-10 h-14 md:h-16 bg-slate-950 dark:bg-slate-50 text-white dark:text-slate-950 rounded-[1.25rem] md:rounded-[1.5rem] font-black tracking-widest uppercase text-[10px] md:text-xs flex items-center justify-center md:justify-start space-x-3 hover:bg-primary transition-all shadow-xl hover:-translate-y-1 group">
                     <span>Lihat Profil Selengkapnya</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </button>

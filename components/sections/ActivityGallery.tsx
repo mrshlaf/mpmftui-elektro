@@ -51,7 +51,7 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8]"
+              className="text-3xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.85] font-heading"
             >
               Jejak <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Progresivitas</span>
@@ -86,7 +86,7 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-white/40 dark:bg-slate-950/40 backdrop-blur-3xl p-4 md:p-10"
+              className="fixed inset-0 z-[999] flex items-center justify-center bg-white/40 dark:bg-slate-950/40 backdrop-blur-3xl p-4 md:p-10"
               onClick={() => setActiveImage(null)}
             >
               <motion.div
@@ -98,13 +98,14 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
                 onClick={(e) => e.stopPropagation()}
               >
                 <Image
-                  src={activities[activeImage].externaImageUrl || activities[activeImage].localImagePath || ""}
+                  src={activities[activeImage].externaImageUrl || activities[activeImage].localImagePath || "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80"}
                   alt={activities[activeImage].title}
                   fill
                   className="object-cover opacity-60"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-8 md:p-20">
+                <div className="absolute inset-x-0 bottom-0 p-10 md:p-24 pb-16 md:pb-24">
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -113,10 +114,10 @@ export default function ActivityGallery({ activities }: { activities: ActivityDa
                     <span className="px-5 py-2 rounded-2xl bg-primary text-slate-950 text-[10px] font-black uppercase tracking-widest mb-8 inline-block shadow-2xl">
                       {activities[activeImage].category}
                     </span>
-                    <h2 className="text-4xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.8]">
+                    <h2 className="text-3xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.8] font-heading">
                       {activities[activeImage].title}
                     </h2>
-                    <p className="text-white/70 text-lg md:text-3xl font-bold max-w-4xl leading-relaxed border-l-4 border-white/20 pl-8">
+                    <p className="text-white/70 text-lg md:text-2xl font-bold max-w-4xl leading-relaxed border-l-4 border-white/20 pl-8">
                       {activities[activeImage].description}
                     </p>
                   </motion.div>
@@ -179,6 +180,7 @@ function GalleryItem({ activity, idx, setActiveImage }: any) {
           alt={activity.title}
           fill
           className="object-cover group-hover:scale-110 transition-all duration-1000 ease-out grayscale-[0.2] group-hover:grayscale-0"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent transition-opacity duration-500 opacity-80 group-hover:opacity-60" />
         

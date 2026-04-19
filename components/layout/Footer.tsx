@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MessageCircle, Mail, MapPin, ArrowRight, ExternalLink, Globe, Layout, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,8 +33,13 @@ export default function Footer() {
           {/* Brand Identity Section */}
           <div className="lg:col-span-5 space-y-10 focus-within:z-50">
             <Link href="/" className="inline-flex items-center space-x-5 group">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center transition-all duration-700 group-hover:rotate-6 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] overflow-hidden">
-                <img src="/logo-mpm.png" alt="Logo MPM" className="w-full h-full object-contain p-2" />
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center transition-all duration-700 group-hover:rotate-6 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] overflow-hidden relative">
+                <Image 
+                  src="/logo-mpm.png" 
+                  alt="Logo MPM" 
+                  fill
+                  className="object-contain p-2" 
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-white tracking-tighter block leading-none uppercase">SINTESA KARSA</span>

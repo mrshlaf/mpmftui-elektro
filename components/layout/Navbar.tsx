@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ExternalLink, MessageCircle, Mail, Lock as LockIcon, ArrowUpRight, ChevronRight } from "lucide-react";
 import ThemeToggle from "../ThemeToggle";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,8 +51,14 @@ export default function Navbar() {
       >
         {/* Logo Section */}
         <Link href="/" className="flex items-center space-x-3 group relative z-50">
-          <div className="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 rounded-xl bg-white flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm group-hover:scale-105">
-            <img src="/logo-mpm.png" alt="MPM Logo" className="w-full h-full object-contain p-1.5" />
+          <div className="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 rounded-xl bg-white flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm group-hover:scale-105 relative">
+            <Image 
+              src="/logo-mpm.png" 
+              alt="MPM Logo" 
+              fill
+              className="object-contain p-1.5" 
+              priority
+            />
           </div>
           <div className="flex flex-col">
             <span className="text-slate-950 dark:text-white font-black tracking-tighter text-base md:text-lg block leading-none uppercase">SINTESA KARSA</span>

@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Zap, Sparkles, MoveDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect } from "react";
 
 export default function HeroSection() {
@@ -67,10 +68,12 @@ export default function HeroSection() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="w-full max-w-[280px] md:max-w-[400px] lg:max-w-[450px] aspect-square relative group shrink-0"
           >
-            <img 
+            <Image 
               src="/logo-mpm.png" 
               alt="MPM Logo" 
-              className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_20px_50px_rgba(30,58,138,0.4)] group-hover:scale-105 transition-transform duration-700" 
+              fill
+              className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_20px_50px_rgba(30,58,138,0.4)] group-hover:scale-105 transition-transform duration-700" 
+              priority
             />
           </motion.div>
 
@@ -92,7 +95,7 @@ export default function HeroSection() {
                 variants={letterContainer}
                 initial="hidden"
                 animate="show"
-                className="text-6xl md:text-[8rem] lg:text-[10rem] font-black tracking-tighter text-foreground leading-[0.85] md:leading-[0.8] drop-shadow-2xl font-heading select-none"
+                className="text-5xl md:text-[8rem] lg:text-[10rem] font-black tracking-tighter text-foreground leading-[0.85] md:leading-[0.8] drop-shadow-2xl font-heading select-none mt-4 md:mt-0"
               >
                 <div className="flex flex-wrap justify-center lg:justify-start overflow-hidden">
                   {"PAGI".split("").map((char, i) => (
