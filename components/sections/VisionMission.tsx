@@ -75,7 +75,7 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl lg:text-9xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.9] md:leading-[0.8] mb-12 font-sans"
+              className="text-4xl md:text-8xl lg:text-9xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.9] md:leading-[0.8] mb-12 font-heading"
             >
               Visi Besar Kita <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 drop-shadow-[0_20px_100px_rgba(30,58,138,0.3)] animate-gradient-x">SINTESA KARSA</span>
@@ -133,7 +133,7 @@ export default function VisionMission({ isTeaser = false }: VisionMissionProps) 
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Strategic Direction</span>
               </motion.div>
-              <h2 className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-7xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.85] mb-8`}>
+              <h2 className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-7xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.85] mb-8 font-heading`}>
                 Visi Besar <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">SINTESA KARSA</span>
               </h2>

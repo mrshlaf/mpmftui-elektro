@@ -51,7 +51,7 @@ export default function TriasSection() {
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-sans"
+              className="text-4xl md:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading"
             >
               Pilar Pelayanan <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Digital</span>

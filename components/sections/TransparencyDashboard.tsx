@@ -30,7 +30,7 @@ export default function TransparencyDashboard({ isTeaser = false }: Transparency
               <TrendingUp className="w-5 h-5" />
               <span className="font-black tracking-[0.4em] text-[10px] uppercase text-slate-400 dark:text-slate-500">Analytical Oversight</span>
             </motion.div>
-            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground font-sans ${isTeaser ? "text-5xl md:text-9xl" : "text-5xl md:text-8xl"}`}>
+            <h2 className={`font-black tracking-tighter leading-[0.8] mb-8 text-foreground font-heading ${isTeaser ? "text-5xl md:text-9xl" : "text-5xl md:text-8xl"}`}>
               Insight & <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Transparansi</span>
             </h2>

@@ -121,7 +121,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-sans`}
+              className={`text-5xl ${isTeaser ? "md:text-9xl" : "md:text-8xl"} font-black text-slate-950 dark:text-white tracking-tighter leading-[0.8] font-heading`}
             >
               Produk <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-400">Fraksi 2026</span>
@@ -211,7 +211,7 @@ export default function ProductShowcase({ isTeaser = false }: ProductShowcasePro
                     )}
                   </div>
                   
-                  <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter font-sans ${isTeaser ? "text-5xl" : "text-4xl md:text-6xl"}`}>
+                   <h3 className={`font-black text-slate-950 dark:text-white mb-6 tracking-tighter font-heading ${isTeaser ? "text-5xl" : "text-4xl md:text-6xl"}`}>
                     {activeProduct.title}
                   </h3>
                   <p className={`text-slate-500 dark:text-slate-400 font-bold leading-relaxed ${isTeaser ? "text-xl md:text-2xl" : "text-lg md:text-2xl mb-14"}`}>

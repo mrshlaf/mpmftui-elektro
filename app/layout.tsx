@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { ThemeProvider } from "@/components/ThemeContext";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
+  subsets: ["latin"],
+});
+
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 });
 
@@ -30,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="id" className={`${plusJakartaSans.variable} ${geistMono.variable} ${sora.variable}`} suppressHydrationWarning>
       <body className={`${plusJakartaSans.className} min-h-screen bg-background text-foreground antialiased selection:bg-primary/20`}>
         <Providers>
           <ThemeProvider>

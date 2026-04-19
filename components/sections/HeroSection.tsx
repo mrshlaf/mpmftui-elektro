@@ -92,7 +92,7 @@ export default function HeroSection() {
                 variants={letterContainer}
                 initial="hidden"
                 animate="show"
-                className="text-6xl md:text-[8rem] lg:text-[10rem] font-black tracking-tighter text-foreground leading-[0.85] md:leading-[0.8] drop-shadow-2xl font-sans select-none"
+                className="text-6xl md:text-[8rem] lg:text-[10rem] font-black tracking-tighter text-foreground leading-[0.85] md:leading-[0.8] drop-shadow-2xl font-heading select-none"
               >
                 <div className="flex flex-wrap justify-center lg:justify-start overflow-hidden">
                   {"PAGI".split("").map((char, i) => (
@@ -104,12 +104,14 @@ export default function HeroSection() {
                     <motion.span 
                       key={i} 
                       variants={letterItem} 
-                      className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 drop-shadow-[0_20px_100px_rgba(0,209,255,0.4)]"
+                      className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-cyan-500 font-heading"
                     >
                       {char}
                     </motion.span>
                   ))}
                 </div>
+                {/* Clean Glow Effect Background */}
+                <div className="absolute inset-0 -z-10 bg-primary/30 blur-[150px] rounded-full opacity-60 dark:opacity-40 pointer-events-none" />
               </motion.div>
             </div>
 
