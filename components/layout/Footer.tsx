@@ -32,8 +32,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center space-x-4 mb-8 group">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-[1.25rem] flex items-center justify-center transition-all duration-500 group-hover:-rotate-6 group-hover:shadow-2xl group-hover:shadow-primary/20">
-                <Zap className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-white rounded-[1.25rem] flex items-center justify-center transition-all duration-500 group-hover:-rotate-6 group-hover:shadow-2xl group-hover:shadow-white/10 overflow-hidden">
+                <img src="/logo-mpm.png" alt="Logo MPM" className="w-full h-full object-contain p-2" />
               </div>
               <div>
                 <span className="text-2xl font-black text-white tracking-tighter block leading-none">SINTESA KARSA</span>

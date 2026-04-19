@@ -41,8 +41,8 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 group">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-950 dark:bg-white rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,0,0,0.2)]">
-            <Zap className="w-6 h-6 text-white dark:text-slate-950" />
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-white rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] overflow-hidden border border-slate-100 dark:border-slate-800">
+            <img src="/logo-mpm.png" alt="Logo MPM" className="w-full h-full object-contain p-1.5" />
           </div>
           <div className="hidden sm:block">
             <span className="text-slate-900 dark:text-white font-black tracking-tight text-lg block leading-none uppercase">SINTESA KARSA</span>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "Garda Aspiratif, Progresif, dan Transparan — Platform Digital MPM FTUI Fraksi Elektro 2026.",
   keywords: ["MPM FTUI", "Fraksi Elektro", "Sintesa Karsa", "2026"],
   icons: {
-    icon: "/icon.svg",
+    icon: "/logo-mpm.png",
   },
 };
 
