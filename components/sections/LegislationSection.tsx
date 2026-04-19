@@ -146,9 +146,14 @@ function LegislationCard({ tap, idx }: any) {
           <div className="w-2 h-2 rounded-full bg-primary" />
           <span>Ketetapan Aktif</span>
         </div>
-        <div className="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 group-hover:border-slate-950 dark:group-hover:border-white transition-all duration-500 group-hover:rotate-45 shadow-sm">
+        <a 
+          href="https://drive.google.com/drive/u/3/folders/1ExHbgdSsnaE7SNIe9RRnGbWj_uqRRJNI" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-slate-950 dark:group-hover:bg-slate-50 group-hover:text-white dark:group-hover:text-slate-950 group-hover:border-slate-950 dark:group-hover:border-white transition-all duration-500 group-hover:rotate-45 shadow-sm"
+        >
           <ExternalLink className="w-5 h-5" />
-        </div>
+        </a>
       </div>
 
     </motion.div>

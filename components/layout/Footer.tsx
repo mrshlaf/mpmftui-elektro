@@ -9,12 +9,12 @@ export default function Footer() {
 
   const footerLinks = {
     "Legislasi & Data": [
-      { name: "FrakZIP (Pusat Data)", href: "https://drive.google.com/drive/folders/1x25CIo0VwHPzBSRx7QrsR_3virMq2WTK" },
+      { name: "FrakZIP (Pusat Data)", href: "https://drive.google.com/drive/u/3/folders/1w5FyG8Ub3EyBBZ7eMeprnpDRySzyONFm" },
       { name: "UUD IKM UI", href: "https://drive.google.com/file/d/1Dv-1e46Z31zwiHKvEK2S-yj2Dy8xpRev/view" },
       { name: "Arsip Kegiatan", href: "/#kegiatan" },
     ],
     "Layanan": [
-      { name: "Pengajuan Forum", href: "https://drive.google.com/drive/folders/1x25CIo0VwHPzBSRx7QrsR_3virMq2WTK" },
+      { name: "Pengajuan Forum", href: "https://drive.google.com/drive/u/3/folders/1ExHbgdSsnaE7SNIe9RRnGbWj_uqRRJNI" },
       { name: "Saluran Aspirasi", href: "https://wa.me/6285213695654" },
       { name: "Oprec Staff", href: "http://bit.ly/OprecStaffMPM2026" },
     ],
