@@ -48,9 +48,9 @@ export default function HeroSection() {
       y: 0, 
       opacity: 1, 
       rotateX: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as any } 
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
     },
-  };
+  } as any;
 
   return (
     <section className="relative min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-background">
